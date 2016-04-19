@@ -1,0 +1,33 @@
+fetch
+store a
+load 1
+store product
+load 0
+store sum
+func abc
+load a
+load 1
+gt
+jump_false 29
+load product
+load a
+pro
+store product
+load a
+load 1
+sub
+store a
+load sum
+load 1
+add
+store sum
+load product
+write
+load sum
+write
+load abc
+cal
+func_end
+load abc
+cal
+prog_end
