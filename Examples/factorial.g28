@@ -1,0 +1,18 @@
+SCAN a :
+product EQ 1 :
+sum EQ 0 :
+
+FUNC abc LFT :
+
+CON ( a GT 1 ) [ :
+product EQ product * a :
+a EQ a - 1 :
+sum EQ sum + 1 :
+FLASH product :
+FLASH sum :
+CALL abc :
+] :
+
+RHT :
+
+CALL abc :
