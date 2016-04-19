@@ -5,10 +5,6 @@
 LITERAL				[a-zA-Z]
 NUMBER				[0-9]
 %%
-{NUMBER}+			{ yylval.val = atoi(yytext); return NUM;}
-							
-{LITERAL}+			{ yylval.string = (char *)strdup(yytext); return VAR; }
-
 "+"					{ return PLUS; }
 
 "-"					{ return SUB; }
@@ -17,9 +13,11 @@ NUMBER				[0-9]
 
 "/"					{ return DIV; }
 
-"EQ"				{ return ASSIGN;}
+"EQ"				{ return ASSIGN; }
 
 "CON"        		{ return IF; }
+
+"INSTEAD"			{ return ELSE; }		
 
 "GT"				{ return GREATER; }
 
@@ -39,7 +37,7 @@ NUMBER				[0-9]
 
 "LOOP UNTIL" 		{ yylval.string=(char *)yytext; return WHILE; }
 
-"FUNC"      		{ return FUNCTION;}
+"FUNC"      		{ return FUNCTION; }
 
 "LFT"				{ return FUNCTIONL; }
 
@@ -47,11 +45,15 @@ NUMBER				[0-9]
 
 "CALL"				{ return CALLFUNCTION; }
 
-"SCAN"				{ yylval.string=(char *)yytext; return READ; }
-								
-"FLASH"				{ yylval.string=(char *)yytext; return PRINT; }							
+"SCAN"				{ yylval.string=(char *)yytext; return READ; }	
 
-":"					{ return END;}
+"FLASH"				{ yylval.string=(char *)yytext; return PRINT; }
 
-"RETURN"			{ return RETURN; }								
+":"					{ return END; }
+
+"RETURN"			{ return RETURN; }
+
+{NUMBER}+			{ yylval.val = atoi(yytext); return NUM; }
+							
+{LITERAL}+			{ yylval.string = (char *)strdup(yytext); return VAR; }							
 %%
