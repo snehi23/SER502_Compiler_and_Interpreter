@@ -17,11 +17,21 @@ NUMBER				[0-9]
 
 "CON"        		{ return IF; }
 
-"INSTEAD"			{ return ELSE; }		
+"INSTEAD"			{ return ELSE; }
+
+"T"					{ return TRUE; }
+
+"F"					{ return FALSE; }
 
 "GT"				{ return GREATER; }
 
 "LS"				{ return LESS; }
+
+"&"					{ return AND; }
+
+"|"					{return OR; }
+
+"!"					{return NOT; }
 
 "("					{ return LPAREN; }
 
@@ -45,7 +55,7 @@ NUMBER				[0-9]
 
 "CALL"				{ return CALLFUNCTION; }
 
-"SCAN"				{ yylval.string=(char *)yytext; return READ; }	
+"SCAN"				{ yylval.string=(char *)yytext; return READ; }
 
 "FLASH"				{ yylval.string=(char *)yytext; return PRINT; }
 
@@ -54,6 +64,6 @@ NUMBER				[0-9]
 "RETURN"			{ return RETURN; }
 
 {NUMBER}+			{ yylval.val = atoi(yytext); return NUM; }
-							
-{LITERAL}+			{ yylval.string = (char *)strdup(yytext); return VAR; }							
+
+{LITERAL}+			{ yylval.string = (char *)strdup(yytext); return VAR; }
 %%
