@@ -4,10 +4,10 @@
 
 char intermediate_code[200][25]; /* 2D character array to store generated intermediate code */
 char to_string[16];			 	 /* NUM to string value */
-int store_to_stack[5];			 /* Location storage before execution of condition */	
-int code_line_number = 0;		 /* Index for integemediate code line number */
+int store_to_stack[5];			 /* Location storage before execution of condition */
+int code_line_number = 0;		 /* Index for intermediate code line number */
 int current_line_number; 		 /* Line index stored in stack */
-int stored_location;			 /* Location value stored in stack */	
+int stored_location;			 /* Location value stored in stack */
 
 int i = 0, x = 0;
 
@@ -35,7 +35,7 @@ int pop() {
 
 %union {
 
-	int val;  
+	int val;
 	char *string;
 }
 
@@ -43,18 +43,18 @@ int pop() {
 
 %token LFLOWER RFLOWER LSQUARE RSQUARE FUNCTIONL FUNCTIONR LPAREN RPAREN	/* brackets */
 
-%token ASSIGN GREATER LESS													/* boolean operators */	
+%token ASSIGN GREATER LESS													/* boolean operators */
 
 %token PLUS SUB MULTIPLY DIV  												/* arithmatic operators */
 
 %token IF ELSE WHILE FUNCTION												/* statement keywords */
 
-%token READ PRINT CALLFUNCTION												/* statement operators */ 
+%token READ PRINT CALLFUNCTION												/* statement operators */
 
 %token RETURN 																/* return statement operators */
 
 %token END 																	/* end of statement */
-         
+
 %token <val> 	NUM       													/* NUM token contains a number */
 
 %token <string> VAR   														/* VAR token contains a variable */
@@ -76,14 +76,14 @@ int pop() {
 
 %%
 
-input : 	/* empty */ 
-			| input line 
+input : 	/* empty */
+			| input line
 ;
 
-line : 	END	| expression END 						{ printf("\n"); }  
+line : 	END	| expression END 						{ printf("\n"); }
 ;
 
-expression :  	statement 
+expression :  	statement
 			  | expression PLUS expression	 		{
 														strcpy(intermediate_code[code_line_number++],"add\n");
 													}
@@ -98,27 +98,27 @@ expression :  	statement
 
 			  | expression DIV expression			{
 														strcpy(intermediate_code[code_line_number++],"div\n");
-													}				 
+													}
 
 			  | VAR									{
 														strcpy(intermediate_code[code_line_number],"load ");
 														strcat(intermediate_code[code_line_number],$1);
 														strcat(intermediate_code[code_line_number++],"\n");
 													}
-																		
+
 			  | NUM 			    				{
-														strcpy(intermediate_code[code_line_number],"load ");	
+														strcpy(intermediate_code[code_line_number],"load ");
 														sprintf(to_string,"%d",$1);
 														strcat(intermediate_code[code_line_number],to_string);
 														strcat(intermediate_code[code_line_number++],"\n");
-													}									
-;			
-						
-statement :		
+													}
+;
+
+statement :
 				| IF expression LSQUARE 			{
 														strcpy(intermediate_code[code_line_number++],"jump_false ");
-													}					
-				
+													}
+
 				| RSQUARE				{
 											current_line_number=pop();
 											stored_location=pop();
@@ -127,40 +127,40 @@ statement :
 											strcat(intermediate_code[current_line_number],to_string);
 											strcat(intermediate_code[current_line_number],"\n");
 										}
-				
-				| FUNCTION VAR FUNCTIONL		
+
+				| FUNCTION VAR FUNCTIONL
 										{
 											strcpy(intermediate_code[code_line_number],"func ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
-				| CALLFUNCTION VAR		
+				| CALLFUNCTION VAR
 										{
 											strcpy(intermediate_code[code_line_number],"load ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 											strcpy(intermediate_code[code_line_number++],"cal\n");
 										}
-       
+
 				| FUNCTIONR		    	{
 											strcpy(intermediate_code[code_line_number++],"func_end\n");
 										}
-									
+
 				| WHILE expression LFLOWER 	{
 											strcpy(intermediate_code[code_line_number++],"jump_false ");
 										}
 
 				| RETURN VAR			{
-				
+
 											strcpy(intermediate_code[code_line_number],"rtn ");
 											strcat(intermediate_code[code_line_number],$2);
-											strcat(intermediate_code[code_line_number++],"\n");						
+											strcat(intermediate_code[code_line_number++],"\n");
 										}
-									
+
 				| RFLOWER				{
 											current_line_number=pop();
 											stored_location=pop();
-											
+
 											strcpy(intermediate_code[code_line_number++],"load 1\n");
 											strcpy(intermediate_code[code_line_number],"jump_true ");
 											sprintf(to_string,"%d",stored_location);
@@ -171,32 +171,32 @@ statement :
 											strcat(intermediate_code[current_line_number],to_string);
 										    strcat(intermediate_code[current_line_number],"\n");
 										}
-									
-									
+
+
 				| LPAREN condition RPAREN	{
 												code_line_number=code_line_number-3;
 												push(code_line_number);
 												code_line_number=code_line_number+3;
 												push(code_line_number);
 											}
-											
+
 				| READ VAR				{
 											strcpy(intermediate_code[code_line_number++],"fetch\n");
 											strcpy(intermediate_code[code_line_number],"store ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
-									
+
 				| PRINT expression		 		{
 											strcpy(intermediate_code[code_line_number++],"write\n");
 										}
-									
+
 				| VAR ASSIGN expression		{
 											strcpy(intermediate_code[code_line_number],"store ");
 											strcat(intermediate_code[code_line_number],$1);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
-										
+
 ;
 
 condition :			| expression GREATER expression	{
@@ -205,7 +205,7 @@ condition :			| expression GREATER expression	{
 					| expression LESS expression		{
 											strcpy(intermediate_code[code_line_number++],"lt\n");
 										}
-;						
+;
 
 %%
 
@@ -216,18 +216,18 @@ extern FILE *yyin;
 
 int main (int argc,char **argv)
 {
-	
-	char output_file_name[20];	 
+
+	char output_file_name[20];
    	FILE *fp;
    	++argv, --argc;
    	int i = 0;
 
-   	if (argc > 0)	{   
+   	if (argc > 0)	{
 
 		strcpy(output_file_name, argv[0]);
 
      	yyin = fopen(argv[0], "r");
-		
+
    	}
    	else 	{
 
@@ -241,20 +241,20 @@ int main (int argc,char **argv)
 	fp = fopen(output_file_name, "w");
 
 	strcpy(intermediate_code[code_line_number++], "prog_end\n");				/* appending end of file to intermediate code generated */
-	
+
    	while(i < code_line_number)	{
 
       	fprintf(fp,"%s", intermediate_code[i++]);
 
    	}
 
-	fclose(fp); 
+	fclose(fp);
 
 	return 0;
 }
 
 int yyerror (char *s) 	{ 												/* error case handling on parsing */
- 
+
  printf ("ERROR: %s\n",s);
 
  return 0;
