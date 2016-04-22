@@ -41,7 +41,8 @@ int pop() {
 
 /* Tokens from FLEX*/
 
-%token LFLOWER RFLOWER LSQUARE RSQUARE FUNCTIONL FUNCTIONR LPAREN RPAREN	/* brackets */
+
+%token LFLOWER RFLOWER LSQUARE RSQUARE FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK /* brackets */
 
 %token ASSIGN GREATER LESS AND OR	NOT											/* boolean operators */
 
@@ -57,13 +58,18 @@ int pop() {
 
 %token END 																	/* end of statement */
 
+
+
 %token <val> 	NUM       													/* NUM token contains a number */
 
 %token <string> VAR   														/* VAR token contains a variable */
 
+
+
 %type <val> 	expression
 
 %type <string> 	statement
+
 
 
 /* Associativity of operators in order of increasing precedence */
@@ -84,6 +90,7 @@ input : 	/* empty */
 
 line : 	END	| expression END 						{ printf("\n"); }
 ;
+
 
 expression :    statement
 			  | expression PLUS expression	 		{
@@ -136,6 +143,8 @@ expression :    statement
 														strcat(intermediate_code[code_line_number],"false");
 														strcat(intermediate_code[code_line_number++],"\n");
 	  												}
+			  							
+			 
 ;
 
 statement :
@@ -151,11 +160,39 @@ statement :
 											strcat(intermediate_code[current_line_number],to_string);
 											strcat(intermediate_code[current_line_number],"\n");
 										}
+			
+				| STACK VAR  		{
+											strcpy(intermediate_code[code_line_number++],"stack ");
+											
+											strcat(intermediate_code[code_line_number],$2);
+											strcat(intermediate_code[code_line_number++],"\n");
+										}
+				| VAR PUSH expression 		{
+										strcpy(intermediate_code[code_line_number++],"push ");
+											
+											strcat(intermediate_code[code_line_number],$1);
+											strcat(intermediate_code[code_line_number++],"\n");
+										}
+										
+			   | VAR POP  		{
+										strcpy(intermediate_code[code_line_number++],"pop ");
+											
+											strcat(intermediate_code[code_line_number],$1);
+											strcat(intermediate_code[code_line_number++],"\n");
+										}
+										
+			   | VAR PEEK  		{
+										strcpy(intermediate_code[code_line_number++],"peek ");
+											
+											strcat(intermediate_code[code_line_number],$1);
+											strcat(intermediate_code[code_line_number++],"\n");
+										}
 
 				| FUNCTION VAR FUNCTIONL
 										{
 											strcpy(intermediate_code[code_line_number],"fun ");
 											strcat(intermediate_code[code_line_number],$2);
+											strcat(intermediate_code[code_line_number++],"\n");
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
 				| CALLFUNCTION VAR
@@ -220,8 +257,10 @@ statement :
 												strcat(intermediate_code[code_line_number],$1);
 												strcat(intermediate_code[code_line_number++],"\n");
 											}
+		
 
 ;
+
 
 condition :			| expression GREATER expression	{
 														strcpy(intermediate_code[code_line_number++],"grt\n");

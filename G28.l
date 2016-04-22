@@ -47,6 +47,8 @@ NUMBER				[0-9]
 
 "LOOP UNTIL" 		{ yylval.string=(char *)yytext; return WHILE; }
 
+"STK"			    { return STACK;}
+
 "FUNC"      		{ return FUNCTION; }
 
 "LFT"				{ return FUNCTIONL; }
@@ -62,6 +64,13 @@ NUMBER				[0-9]
 ":"					{ return END; }
 
 "RETURN"			{ return RETURN; }
+
+"PUSH"              {return PUSH;}
+
+"POP"              {return POP;}
+
+"PEEK"              {return PEEK;}
+
 
 {NUMBER}+			{ yylval.val = atoi(yytext); return NUM; }
 

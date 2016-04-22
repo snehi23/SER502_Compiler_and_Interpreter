@@ -1,0 +1,4 @@
+STK a:
+a PUSH 1:
+a POP:
+a PEEK:
