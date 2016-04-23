@@ -1,8 +1,10 @@
 stack a
 lod 1
 push a
-pop a
-sto b
+lod 5
+push a
 peek a
-sto c
+sto b
+lod b
+prt
 end
