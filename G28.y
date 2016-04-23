@@ -36,7 +36,6 @@ int pop() {
 
 
 %union {
-
 	int val;
 	char *string;
 }
@@ -90,10 +89,8 @@ input : 	/* empty */
 			| input line
 ;
 
-line : 	END	| expression END 						{ printf("\n");
-														lineno++; }
+line : 	END	| expression END 						{ lineno++; }
 ;
-
 
 expression :    statement
 			  | expression PLUS expression	 		{
@@ -146,8 +143,8 @@ expression :    statement
 														strcat(intermediate_code[code_line_number],"false");
 														strcat(intermediate_code[code_line_number++],"\n");
 	  												}
-			  							
-			 
+
+
 ;
 
 statement :
@@ -163,13 +160,13 @@ statement :
 											strcat(intermediate_code[current_line_number],to_string);
 											strcat(intermediate_code[current_line_number],"\n");
 										}
-			
+
 				| STACK VAR  		{
 											strcpy(intermediate_code[code_line_number++],"stack ");
-														strcat(intermediate_code[code_line_number],$2);
-														strcat(intermediate_code[code_line_number++],"\n");
+											strcat(intermediate_code[code_line_number],$2);
+											strcat(intermediate_code[code_line_number++],"\n");
 								
-										}
+									}
 				|  PUSH VAR NUM 		{
 											strcat(intermediate_code[code_line_number++],"lod ");
 											sprintf(to_string,"%d",$3);	
@@ -188,8 +185,7 @@ statement :
 										}
 										
 			   |  PEEK  VAR		{
-										strcpy(intermediate_code[code_line_number++],"peek ");
-											
+											strcpy(intermediate_code[code_line_number++],"peek ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
@@ -198,7 +194,6 @@ statement :
 										{
 											strcpy(intermediate_code[code_line_number],"fun ");
 											strcat(intermediate_code[code_line_number],$2);
-											strcat(intermediate_code[code_line_number++],"\n");
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
 				| CALLFUNCTION VAR
@@ -263,7 +258,7 @@ statement :
 												strcat(intermediate_code[code_line_number],$1);
 												strcat(intermediate_code[code_line_number++],"\n");
 											}
-		
+
 
 ;
 
