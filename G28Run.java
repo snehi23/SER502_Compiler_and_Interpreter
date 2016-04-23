@@ -50,7 +50,7 @@ public class G28Run {
 
 			while(!alltokens[n].equals("end"))
 			{
-				if((alltokens[n].equals("eql")) || (alltokens[n].equals("les")) || (alltokens[n].equals("rtn")) || (alltokens[n].equals("cal")) || (alltokens[n].equals("eof")) || (alltokens[n].equals("fun")) || (alltokens[n].equals("add")) || (alltokens[n].equals("sub")) || (alltokens[n].equals("pro")) || (alltokens[n].equals("div")) || (alltokens[n].equals("sto")) || (alltokens[n].equals("lod")) || (alltokens[n].equals("fjp")) || (alltokens[n].equals("tjp")) || (alltokens[n].equals("prt")) || (alltokens[n].equals("grt"))|| (alltokens[n].equals("rdv")) || (alltokens[n].equals("and")) || (alltokens[n].equals("or"))) {
+				if((alltokens[n].equals("eql")) || (alltokens[n].equals("les")) || (alltokens[n].equals("rtn")) || (alltokens[n].equals("cal")) || (alltokens[n].equals("eof")) || (alltokens[n].equals("fun")) || (alltokens[n].equals("add")) || (alltokens[n].equals("sub")) || (alltokens[n].equals("pro")) || (alltokens[n].equals("div")) || (alltokens[n].equals("sto")) || (alltokens[n].equals("lod")) || (alltokens[n].equals("fjp")) || (alltokens[n].equals("tjp")) || (alltokens[n].equals("prt")) || (alltokens[n].equals("grt"))|| (alltokens[n].equals("rdv")) || (alltokens[n].equals("and")) || (alltokens[n].equals("or")) || (alltokens[n].equals("not"))) {
 						alloperations[m]= alltokens[n];
 						m += 1;
 				}
