@@ -2016,7 +2016,6 @@ int yyerror (char *s) 	{
 
  printf ("ERROR: %s -----%s----- at line number :  %d\n",s,yytext,lineno+1);
  
-
  return 0;
 }
 

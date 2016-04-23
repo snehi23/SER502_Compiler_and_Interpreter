@@ -1,3 +1,4 @@
+/*Stack implementation*/
 STK a:
 PUSH a 1:
 PUSH a 5:

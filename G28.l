@@ -100,8 +100,7 @@ NUMBER				[0-9]
 
 
 static void forget_to_close_comment_error(void){
-   fprintf(stderr, "Tokenizing error: '%c'\n", *yytext);
-  yyterminate(); 
+   fprintf(stderr, "Tokenizing error: '%c'\n", *yytext); 
  fprintf(stderr, "Error unclosed comment, expect */\n");
         exit(-1);
 }
