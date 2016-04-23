@@ -296,6 +296,7 @@ public class G28Run {
 
 					if ((operations[i].equals("not"))&&(booleanstack.isEmpty()==false)){
 						Boolean value = booleanstack.pop();
+						booleanhashmapglobalvalues.put(values[i-1], !value);
 						if (!value){
 							booleanstack.push(true);
 						}else{
