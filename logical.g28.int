@@ -1,0 +1,17 @@
+lod true
+sto a
+lod false
+sto b
+lod a
+lod b
+and
+sto c
+lod c
+prt
+lod a
+lod b
+or
+sto d
+lod d
+prt
+end

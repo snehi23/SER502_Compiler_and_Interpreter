@@ -1,0 +1,5 @@
+STK a:
+PUSH a 1:
+b EQ POP a b:
+c EQ PEEK a:
+

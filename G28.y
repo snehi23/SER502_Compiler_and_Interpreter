@@ -1,3 +1,4 @@
+
 %{
 #include <stdio.h>
 #include <string.h>
@@ -8,6 +9,7 @@ int store_to_stack[5];			 /* Location storage before execution of condition */
 int code_line_number = 0;		 /* Index for intermediate code line number */
 int current_line_number; 		 /* Line index stored in stack */
 int stored_location;			 /* Location value stored in stack */
+int lineno= 0;
 
 int i = 0, x = 0;
 
@@ -88,7 +90,8 @@ input : 	/* empty */
 			| input line
 ;
 
-line : 	END	| expression END 						{ printf("\n"); }
+line : 	END	| expression END 						{ printf("\n");
+														lineno++; }
 ;
 
 
@@ -163,28 +166,31 @@ statement :
 			
 				| STACK VAR  		{
 											strcpy(intermediate_code[code_line_number++],"stack ");
+														strcat(intermediate_code[code_line_number],$2);
+														strcat(intermediate_code[code_line_number++],"\n");
+								
+										}
+				|  PUSH VAR NUM 		{
+											strcat(intermediate_code[code_line_number++],"lod ");
+											sprintf(to_string,"%d",$3);	
+											strcat(intermediate_code[code_line_number],to_string);
+											strcat(intermediate_code[code_line_number++],"\n");
+											strcpy(intermediate_code[code_line_number++],"push ");
+											strcat(intermediate_code[code_line_number],$2);														
+											strcat(intermediate_code[code_line_number++],"\n");
+										}
+										
+			   |  POP  VAR	{
+										strcpy(intermediate_code[code_line_number++],"pop ");
 											
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
-				| VAR PUSH expression 		{
-										strcpy(intermediate_code[code_line_number++],"push ");
-											
-											strcat(intermediate_code[code_line_number],$1);
-											strcat(intermediate_code[code_line_number++],"\n");
-										}
 										
-			   | VAR POP  		{
-										strcpy(intermediate_code[code_line_number++],"pop ");
-											
-											strcat(intermediate_code[code_line_number],$1);
-											strcat(intermediate_code[code_line_number++],"\n");
-										}
-										
-			   | VAR PEEK  		{
+			   |  PEEK  VAR		{
 										strcpy(intermediate_code[code_line_number++],"peek ");
 											
-											strcat(intermediate_code[code_line_number],$1);
+											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
 
@@ -276,6 +282,9 @@ condition :			| expression GREATER expression	{
 #include<string.h>
 
 extern FILE *yyin;
+extern char *yytext;
+
+
 
 int main (int argc,char **argv)
 {
@@ -316,9 +325,10 @@ int main (int argc,char **argv)
 	return 0;
 }
 
-int yyerror (char *s) 	{ 												/* error case handling on parsing */
+int yyerror (char *s) 	{ 
+											/* error case handling on parsing */
 
- printf ("ERROR: %s\n",s);
+ printf ("ERROR: %s -----%s----- at line number :  %d\n",s,yytext,lineno+1);
 
  return 0;
 }

@@ -1,7 +1,12 @@
+
 %{
 #include <stdio.h>
 #include "G28.tab.h"
+
 %}
+
+%option yylineno
+
 LITERAL				[a-zA-Z]
 NUMBER				[0-9]
 %%
@@ -72,7 +77,11 @@ NUMBER				[0-9]
 "PEEK"              {return PEEK;}
 
 
+
+
 {NUMBER}+			{ yylval.val = atoi(yytext); return NUM; }
 
 {LITERAL}+			{ yylval.string = (char *)strdup(yytext); return VAR; }
 %%
+
+

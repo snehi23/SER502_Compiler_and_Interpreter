@@ -1,0 +1,15 @@
+fetch
+store a
+load a
+load 1
+gt
+jump_false 13
+load a
+write
+load a
+load 1
+sub
+store a
+load 1
+jump_true 2
+prog_end

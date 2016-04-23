@@ -1,0 +1,6 @@
+stack a
+lod 1
+push a
+pop a
+sto b
+end
