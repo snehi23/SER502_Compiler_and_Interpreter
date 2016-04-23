@@ -202,12 +202,11 @@ int pop() {
 typedef union YYSTYPE
 #line 38 "G28.y"
 {
-
 	int val;
 	char *string;
 }
 /* Line 193 of yacc.c.  */
-#line 211 "G28.tab.c"
+#line 210 "G28.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -220,7 +219,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 224 "G28.tab.c"
+#line 223 "G28.tab.c"
 
 #ifdef short
 # undef short
@@ -518,10 +517,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    89,    89,    90,    93,    93,    98,    99,   103,   107,
-     111,   114,   118,   121,   125,   131,   138,   144,   153,   154,
-     158,   167,   173,   183,   190,   197,   204,   212,   216,   220,
-     227,   243,   250,   257,   261,   271,   271,   274
+       0,    88,    88,    89,    92,    92,    95,    96,   100,   104,
+     108,   111,   115,   118,   122,   128,   135,   141,   150,   151,
+     155,   164,   170,   180,   187,   193,   199,   207,   211,   215,
+     222,   238,   245,   252,   256,   266,   266,   269
 };
 #endif
 
@@ -1484,62 +1483,61 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 93 "G28.y"
-    { printf("\n");
-														lineno++; ;}
+#line 92 "G28.y"
+    { lineno++; ;}
     break;
 
   case 7:
-#line 99 "G28.y"
+#line 96 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"add\n");
 													;}
     break;
 
   case 8:
-#line 103 "G28.y"
+#line 100 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"sub\n");
 													;}
     break;
 
   case 9:
-#line 107 "G28.y"
+#line 104 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"pro\n");
 													;}
     break;
 
   case 10:
-#line 111 "G28.y"
+#line 108 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"div\n");
 													;}
     break;
 
   case 11:
-#line 114 "G28.y"
+#line 111 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"and\n");
 													;}
     break;
 
   case 12:
-#line 118 "G28.y"
+#line 115 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"or\n");
 													;}
     break;
 
   case 13:
-#line 121 "G28.y"
+#line 118 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"not\n");
 													;}
     break;
 
   case 14:
-#line 125 "G28.y"
+#line 122 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number],"lod ");
 														strcat(intermediate_code[code_line_number],(yyvsp[(1) - (1)].string));
@@ -1548,7 +1546,7 @@ yyreduce:
     break;
 
   case 15:
-#line 131 "G28.y"
+#line 128 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number],"lod ");
 														sprintf(to_string,"%d",(yyvsp[(1) - (1)].val));
@@ -1558,7 +1556,7 @@ yyreduce:
     break;
 
   case 16:
-#line 138 "G28.y"
+#line 135 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number],"lod ");
 														strcat(intermediate_code[code_line_number],"true");
@@ -1567,7 +1565,7 @@ yyreduce:
     break;
 
   case 17:
-#line 144 "G28.y"
+#line 141 "G28.y"
     {
 		 												strcpy(intermediate_code[code_line_number],"lod ");
 														strcat(intermediate_code[code_line_number],"false");
@@ -1576,14 +1574,14 @@ yyreduce:
     break;
 
   case 19:
-#line 154 "G28.y"
+#line 151 "G28.y"
     {
 												strcpy(intermediate_code[code_line_number++],"fjp ");
 											;}
     break;
 
   case 20:
-#line 158 "G28.y"
+#line 155 "G28.y"
     {
 											current_line_number=pop();
 											stored_location=pop();
@@ -1595,17 +1593,17 @@ yyreduce:
     break;
 
   case 21:
-#line 167 "G28.y"
+#line 164 "G28.y"
     {
 											strcpy(intermediate_code[code_line_number++],"stack ");
-														strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
-														strcat(intermediate_code[code_line_number++],"\n");
+											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
+											strcat(intermediate_code[code_line_number++],"\n");
 								
-										;}
+									;}
     break;
 
   case 22:
-#line 173 "G28.y"
+#line 170 "G28.y"
     {
 											strcat(intermediate_code[code_line_number++],"lod ");
 											sprintf(to_string,"%d",(yyvsp[(3) - (3)].val));	
@@ -1618,7 +1616,7 @@ yyreduce:
     break;
 
   case 23:
-#line 183 "G28.y"
+#line 180 "G28.y"
     {
 										strcpy(intermediate_code[code_line_number++],"pop ");
 											
@@ -1628,27 +1626,25 @@ yyreduce:
     break;
 
   case 24:
-#line 190 "G28.y"
+#line 187 "G28.y"
     {
-										strcpy(intermediate_code[code_line_number++],"peek ");
-											
+											strcpy(intermediate_code[code_line_number++],"peek ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
 											strcat(intermediate_code[code_line_number++],"\n");
 										;}
     break;
 
   case 25:
-#line 198 "G28.y"
+#line 194 "G28.y"
     {
 											strcpy(intermediate_code[code_line_number],"fun ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (3)].string));
-											strcat(intermediate_code[code_line_number++],"\n");
 											strcat(intermediate_code[code_line_number++],"\n");
 										;}
     break;
 
   case 26:
-#line 205 "G28.y"
+#line 200 "G28.y"
     {
 											strcpy(intermediate_code[code_line_number],"lod ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
@@ -1658,21 +1654,21 @@ yyreduce:
     break;
 
   case 27:
-#line 212 "G28.y"
+#line 207 "G28.y"
     {
 											strcpy(intermediate_code[code_line_number++],"eof\n");
 										;}
     break;
 
   case 28:
-#line 216 "G28.y"
+#line 211 "G28.y"
     {
 												strcpy(intermediate_code[code_line_number++],"fjp ");
 											;}
     break;
 
   case 29:
-#line 220 "G28.y"
+#line 215 "G28.y"
     {
 
 											strcpy(intermediate_code[code_line_number],"rtn ");
@@ -1682,7 +1678,7 @@ yyreduce:
     break;
 
   case 30:
-#line 227 "G28.y"
+#line 222 "G28.y"
     {
 											current_line_number=pop();
 											stored_location=pop();
@@ -1700,7 +1696,7 @@ yyreduce:
     break;
 
   case 31:
-#line 243 "G28.y"
+#line 238 "G28.y"
     {
 												code_line_number=code_line_number-3;
 												push(code_line_number);
@@ -1710,7 +1706,7 @@ yyreduce:
     break;
 
   case 32:
-#line 250 "G28.y"
+#line 245 "G28.y"
     {
 											strcpy(intermediate_code[code_line_number++],"rdv\n");
 											strcpy(intermediate_code[code_line_number],"sto ");
@@ -1720,14 +1716,14 @@ yyreduce:
     break;
 
   case 33:
-#line 257 "G28.y"
+#line 252 "G28.y"
     {
 											strcpy(intermediate_code[code_line_number++],"prt\n");
 										;}
     break;
 
   case 34:
-#line 261 "G28.y"
+#line 256 "G28.y"
     {
 												strcpy(intermediate_code[code_line_number],"sto ");
 												strcat(intermediate_code[code_line_number],(yyvsp[(1) - (3)].string));
@@ -1736,14 +1732,14 @@ yyreduce:
     break;
 
   case 36:
-#line 271 "G28.y"
+#line 266 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"grt\n");
 													;}
     break;
 
   case 37:
-#line 274 "G28.y"
+#line 269 "G28.y"
     {
 														strcpy(intermediate_code[code_line_number++],"les\n");
 													;}
@@ -1751,7 +1747,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 1755 "G28.tab.c"
+#line 1751 "G28.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1965,7 +1961,7 @@ yyreturn:
 }
 
 
-#line 279 "G28.y"
+#line 274 "G28.y"
 
 
 #include<stdio.h>

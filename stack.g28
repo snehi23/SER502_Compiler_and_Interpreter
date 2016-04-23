@@ -1,5 +1,14 @@
+//single line comment
+
+/*multi
+line 
+comment*/
+
+//Stack implementation
+
+
 STK a:
 PUSH a 1:
-b EQ POP a b:
+b EQ POP a :
 c EQ PEEK a:
 

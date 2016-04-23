@@ -120,12 +120,11 @@
 typedef union YYSTYPE
 #line 38 "G28.y"
 {
-
 	int val;
 	char *string;
 }
 /* Line 1529 of yacc.c.  */
-#line 129 "G28.tab.h"
+#line 128 "G28.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
