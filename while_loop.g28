@@ -1,5 +1,0 @@
-SCAN a:
-LOOP UNTIL (a GT 1) { :
-FLASH a :
-a EQ a - 1 :
-} :

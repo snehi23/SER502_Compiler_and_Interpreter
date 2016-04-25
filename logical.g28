@@ -1,6 +1,0 @@
-a EQ T :
-b EQ F :
-c EQ a & b :
-FLASH c :
-d EQ a | b :
-FLASH d :

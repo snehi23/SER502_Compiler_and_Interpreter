@@ -1,5 +1,5 @@
 /*Stack implementation*/
-STK a:
+STACK a:
 PUSH a 1:
 PUSH a 5:
 b EQ PEEK a:
