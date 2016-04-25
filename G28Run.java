@@ -52,7 +52,7 @@ public class G28Run {
 			while(!alltokens[n].equals("end"))
 
 			{ 
-				if ((alltokens[n].equals("eql")) ||(alltokens[n].equals("les")) ||(alltokens[n].equals("rtn")) ||(alltokens[n].equals("cal")) ||(alltokens[n].equals("eof")) ||(alltokens[n].equals("fun")) ||(alltokens[n].equals("add")) ||(alltokens[n].equals("sub")) ||(alltokens[n].equals("pro")) ||(alltokens[n].equals("div")) ||(alltokens[n].equals("sto")) || (alltokens[n].equals("lod"))|| (alltokens[n].equals("fjp")) || (alltokens[n].equals("tjp"))|| (alltokens[n].equals("prt"))|| (alltokens[n].equals("grt"))|| (alltokens[n].equals("rdv"))||(alltokens[n].equals("stack"))||(alltokens[n].equals("push"))||(alltokens[n].equals("pop"))||(alltokens[n].equals("peek"))|| (alltokens[n].equals("and")) ||(alltokens[n].equals("or")) ||(alltokens[n].equals("not")))
+				if ((alltokens[n].equals("asn")) ||(alltokens[n].equals("lst")) ||(alltokens[n].equals("jbk")) ||(alltokens[n].equals("run")) ||(alltokens[n].equals("fnd")) ||(alltokens[n].equals("fun")) ||(alltokens[n].equals("add")) ||(alltokens[n].equals("sub")) ||(alltokens[n].equals("mul")) ||(alltokens[n].equals("div")) ||(alltokens[n].equals("put")) || (alltokens[n].equals("get"))|| (alltokens[n].equals("bne")) || (alltokens[n].equals("beq"))|| (alltokens[n].equals("dsp"))|| (alltokens[n].equals("grt"))|| (alltokens[n].equals("fth"))||(alltokens[n].equals("stk"))||(alltokens[n].equals("psh"))||(alltokens[n].equals("pop"))||(alltokens[n].equals("pek"))|| (alltokens[n].equals("and")) ||(alltokens[n].equals("or")) ||(alltokens[n].equals("not")))
 				{alloperations[m]= alltokens[n];
 				m += 1;}
 				else {allvalues[m-1]= alltokens[n];
@@ -93,7 +93,7 @@ public class G28Run {
 				
 				for ( int i=0; i<b-a;i++) {
 
-					if (operations[i].equals("rdv")) {   
+					if (operations[i].equals("fth")) {   
 
 						Scanner sc = new Scanner(System.in);
 						out.println("Enter Value");
@@ -101,7 +101,7 @@ public class G28Run {
 						stack.push(input);
 					}
 					
-					if ((operations[i].equals("sto")&&((stack.isEmpty()==false)||(booleanstack.isEmpty()==false)))) {   
+					if ((operations[i].equals("put")&&((stack.isEmpty()==false)||(booleanstack.isEmpty()==false)))) {   
 						
 						if((currentfunction.isEmpty())&&(stack.peek()!=null)) {
 							hashmapglobalvalues.put(values[i], stack.pop());
@@ -117,7 +117,7 @@ public class G28Run {
 						}
 					}
 						
-					if (operations[i].equals("stack")) {
+					if (operations[i].equals("stk")) {
 
 						if(currentfunction.isEmpty()) {
 							stackhashmapglobalvalues.put(values[i], new Stack<Integer>());
@@ -127,7 +127,7 @@ public class G28Run {
 						}
 					}
 					
-					if(operations[i].equals("push")) {
+					if(operations[i].equals("psh")) {
 
 						if((currentfunction.isEmpty())&&(stack.peek()!=null)) {
 							Stack<Integer> st = stackhashmapglobalvalues.get(values[i]);
@@ -156,7 +156,7 @@ public class G28Run {
 						
 					}
 					
-					if(operations[i].equals("peek")) {
+					if(operations[i].equals("pek")) {
 
 						if(currentfunction.isEmpty()) {
 							Stack<Integer> st = stackhashmapglobalvalues.get(values[i]);
@@ -170,7 +170,7 @@ public class G28Run {
 						
 					}
 					
-					if (operations[i].equals("lod")) {   
+					if (operations[i].equals("get")) {   
 
 						boolean doubleornot = true;
 
@@ -237,7 +237,7 @@ public class G28Run {
 
 						int first = i;
 
-						while(!operations[++i].equals("eof"));
+						while(!operations[++i].equals("fnd"));
 
 						Deque<Integer> startandend = new ArrayDeque<Integer>();
 						startandend.push(i);
@@ -245,7 +245,7 @@ public class G28Run {
 						functions.put(values[first],startandend);
 					}
 					
-					if ((operations[i].equals("rtn"))&&(stack.isEmpty()==true)) {
+					if ((operations[i].equals("jbk"))&&(stack.isEmpty()==true)) {
 
 						boolean doubleornot = true;
 						try { 
@@ -268,7 +268,7 @@ public class G28Run {
 						}
 					}
 					
-					if ((operations[i].equals("cal"))&&(values[i]==null)) {
+					if ((operations[i].equals("run"))&&(values[i]==null)) {
 
 						int right=functionstack.pop();
 						int left=functionstack.pop();
@@ -298,7 +298,7 @@ public class G28Run {
 						stack.push(left-right);
 					}
 					
-					if ((operations[i].equals("pro"))&&(stack.isEmpty()==false)) {
+					if ((operations[i].equals("mul"))&&(stack.isEmpty()==false)) {
 
 						double right=stack.pop();
 						double left=stack.pop();
@@ -324,7 +324,7 @@ public class G28Run {
 						}
 					}
 					
-					if ((operations[i].equals("les"))&&(stack.isEmpty()==false)) {
+					if ((operations[i].equals("lst"))&&(stack.isEmpty()==false)) {
 
 						double right=stack.pop();
 						double left=stack.pop();
@@ -335,7 +335,7 @@ public class G28Run {
 							stack.push(0.0);
 						}
 					}
-					if ((operations[i].equals("eql"))&&(stack.isEmpty()==false)) {
+					if ((operations[i].equals("asn"))&&(stack.isEmpty()==false)) {
 
 						double right=stack.pop();
 						double left=stack.pop();
@@ -346,7 +346,7 @@ public class G28Run {
 							stack.push(0.0);
 						}
 					}
-					if ((operations[i].equals("eql"))&&(booleanstack.isEmpty()==false)) {
+					if ((operations[i].equals("asn"))&&(booleanstack.isEmpty()==false)) {
 
 						Boolean right = booleanstack.pop();
 						Boolean left  = booleanstack.pop();
@@ -394,7 +394,7 @@ public class G28Run {
 						}
 					}
 
-					if ((operations[i].equals("fjp"))&&(stack.isEmpty()==false)) {
+					if ((operations[i].equals("bne"))&&(stack.isEmpty()==false)) {
 
 						if((stack.peek()==0.0)&&(currentfunction.isEmpty())) {
 							i = Integer.parseInt(values[i])-1;
@@ -412,7 +412,7 @@ public class G28Run {
 						}
 					}
 
-					if ((operations[i].equals("tjp"))&&(stack.isEmpty()==false)) {
+					if ((operations[i].equals("beq"))&&(stack.isEmpty()==false)) {
 
 						if(stack.peek()==1.0) {
 							i = Integer.parseInt(values[i])-1;
@@ -420,7 +420,7 @@ public class G28Run {
 						}
 					}
 
-					if (operations[i].equals("prt")) {
+					if (operations[i].equals("dsp")) {
 
 						if(stack.isEmpty()==false) {
 
