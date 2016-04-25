@@ -1504,7 +1504,7 @@ yyreduce:
   case 9:
 #line 104 "G28.y"
     {
-														strcpy(intermediate_code[code_line_number++],"pro\n");
+														strcpy(intermediate_code[code_line_number++],"mul\n");
 													;}
     break;
 
@@ -1539,7 +1539,7 @@ yyreduce:
   case 14:
 #line 122 "G28.y"
     {
-														strcpy(intermediate_code[code_line_number],"lod ");
+														strcpy(intermediate_code[code_line_number],"get ");
 														strcat(intermediate_code[code_line_number],(yyvsp[(1) - (1)].string));
 														strcat(intermediate_code[code_line_number++],"\n");
 													;}
@@ -1548,7 +1548,7 @@ yyreduce:
   case 15:
 #line 128 "G28.y"
     {
-														strcpy(intermediate_code[code_line_number],"lod ");
+														strcpy(intermediate_code[code_line_number],"get ");
 														sprintf(to_string,"%d",(yyvsp[(1) - (1)].val));
 														strcat(intermediate_code[code_line_number],to_string);
 														strcat(intermediate_code[code_line_number++],"\n");
@@ -1558,7 +1558,7 @@ yyreduce:
   case 16:
 #line 135 "G28.y"
     {
-														strcpy(intermediate_code[code_line_number],"lod ");
+														strcpy(intermediate_code[code_line_number],"get ");
 														strcat(intermediate_code[code_line_number],"true");
 														strcat(intermediate_code[code_line_number++],"\n");
 													;}
@@ -1567,7 +1567,7 @@ yyreduce:
   case 17:
 #line 141 "G28.y"
     {
-		 												strcpy(intermediate_code[code_line_number],"lod ");
+		 												strcpy(intermediate_code[code_line_number],"get ");
 														strcat(intermediate_code[code_line_number],"false");
 														strcat(intermediate_code[code_line_number++],"\n");
 	  												;}
@@ -1576,7 +1576,7 @@ yyreduce:
   case 19:
 #line 151 "G28.y"
     {
-												strcpy(intermediate_code[code_line_number++],"fjp ");
+												strcpy(intermediate_code[code_line_number++],"bne ");
 											;}
     break;
 
@@ -1595,7 +1595,7 @@ yyreduce:
   case 21:
 #line 164 "G28.y"
     {
-											strcpy(intermediate_code[code_line_number++],"stack ");
+											strcpy(intermediate_code[code_line_number++],"stk ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
 											strcat(intermediate_code[code_line_number++],"\n");
 								
@@ -1605,11 +1605,11 @@ yyreduce:
   case 22:
 #line 170 "G28.y"
     {
-											strcat(intermediate_code[code_line_number++],"lod ");
+											strcat(intermediate_code[code_line_number++],"get ");
 											sprintf(to_string,"%d",(yyvsp[(3) - (3)].val));	
 											strcat(intermediate_code[code_line_number],to_string);
 											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number++],"push ");
+											strcpy(intermediate_code[code_line_number++],"psh ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (3)].string));														
 											strcat(intermediate_code[code_line_number++],"\n");
 										;}
@@ -1628,7 +1628,7 @@ yyreduce:
   case 24:
 #line 187 "G28.y"
     {
-											strcpy(intermediate_code[code_line_number++],"peek ");
+											strcpy(intermediate_code[code_line_number++],"pek ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
 											strcat(intermediate_code[code_line_number++],"\n");
 										;}
@@ -1646,24 +1646,24 @@ yyreduce:
   case 26:
 #line 200 "G28.y"
     {
-											strcpy(intermediate_code[code_line_number],"lod ");
+											strcpy(intermediate_code[code_line_number],"get ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
 											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number++],"cal\n");
+											strcpy(intermediate_code[code_line_number++],"run\n");
 										;}
     break;
 
   case 27:
 #line 207 "G28.y"
     {
-											strcpy(intermediate_code[code_line_number++],"eof\n");
+											strcpy(intermediate_code[code_line_number++],"fnd\n");
 										;}
     break;
 
   case 28:
 #line 211 "G28.y"
     {
-												strcpy(intermediate_code[code_line_number++],"fjp ");
+												strcpy(intermediate_code[code_line_number++],"bne ");
 											;}
     break;
 
@@ -1671,7 +1671,7 @@ yyreduce:
 #line 215 "G28.y"
     {
 
-											strcpy(intermediate_code[code_line_number],"rtn ");
+											strcpy(intermediate_code[code_line_number],"jbk ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
 											strcat(intermediate_code[code_line_number++],"\n");
 										;}
@@ -1683,8 +1683,8 @@ yyreduce:
 											current_line_number=pop();
 											stored_location=pop();
 
-											strcpy(intermediate_code[code_line_number++],"lod 1\n");
-											strcpy(intermediate_code[code_line_number],"tjp ");
+											strcpy(intermediate_code[code_line_number++],"get 1\n");
+											strcpy(intermediate_code[code_line_number],"beq ");
 											sprintf(to_string,"%d",stored_location);
 											strcat(intermediate_code[code_line_number],to_string);
 											strcat(intermediate_code[code_line_number],"\n");
@@ -1708,8 +1708,8 @@ yyreduce:
   case 32:
 #line 245 "G28.y"
     {
-											strcpy(intermediate_code[code_line_number++],"rdv\n");
-											strcpy(intermediate_code[code_line_number],"sto ");
+											strcpy(intermediate_code[code_line_number++],"fth\n");
+											strcpy(intermediate_code[code_line_number],"put ");
 											strcat(intermediate_code[code_line_number],(yyvsp[(2) - (2)].string));
 											strcat(intermediate_code[code_line_number++],"\n");
 										;}
@@ -1718,14 +1718,14 @@ yyreduce:
   case 33:
 #line 252 "G28.y"
     {
-											strcpy(intermediate_code[code_line_number++],"prt\n");
+											strcpy(intermediate_code[code_line_number++],"dsp\n");
 										;}
     break;
 
   case 34:
 #line 256 "G28.y"
     {
-												strcpy(intermediate_code[code_line_number],"sto ");
+												strcpy(intermediate_code[code_line_number],"put ");
 												strcat(intermediate_code[code_line_number],(yyvsp[(1) - (3)].string));
 												strcat(intermediate_code[code_line_number++],"\n");
 											;}
@@ -1741,7 +1741,7 @@ yyreduce:
   case 37:
 #line 269 "G28.y"
     {
-														strcpy(intermediate_code[code_line_number++],"les\n");
+														strcpy(intermediate_code[code_line_number++],"lst\n");
 													;}
     break;
 

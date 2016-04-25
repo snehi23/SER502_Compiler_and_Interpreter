@@ -1,0 +1,3 @@
+SCAN a:
+a EQ a + 1:
+FLASH a:

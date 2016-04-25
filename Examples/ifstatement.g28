@@ -1,0 +1,4 @@
+SCAN a:
+CON (a GT 0) [:
+FLASH a:
+]:
