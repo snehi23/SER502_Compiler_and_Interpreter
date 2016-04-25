@@ -31,13 +31,13 @@ namespace G28Run
 
         static void Main(string[] args)
         {
-            /*
+            
             if(string.IsNullOrEmpty(args[0]))
             {
                 Console.WriteLine("Please input file name");
                 return;
             }
-            */
+            
             string fileName = args[0];
             string line = string.Empty;
             StringBuilder code = new StringBuilder();
