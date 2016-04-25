@@ -45,7 +45,7 @@ int pop() {
 
 %token LFLOWER RFLOWER LSQUARE RSQUARE FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK /* brackets */
 
-%token ASSIGN GREATER LESS AND OR	NOT											/* boolean operators */
+%token ASSIGN GREATER LESS AND OR NOT											/* boolean operators */
 
 %token TRUE FALSE													/* boolean keywords */
 
@@ -102,7 +102,7 @@ expression :    statement
 													}
 
 			  | expression MULTIPLY expression		{
-														strcpy(intermediate_code[code_line_number++],"pro\n");
+														strcpy(intermediate_code[code_line_number++],"mul\n");
 													}
 
 			  | expression DIV expression			{
@@ -120,26 +120,26 @@ expression :    statement
 													}
 
 			  | VAR							{
-														strcpy(intermediate_code[code_line_number],"lod ");
+														strcpy(intermediate_code[code_line_number],"get ");
 														strcat(intermediate_code[code_line_number],$1);
 														strcat(intermediate_code[code_line_number++],"\n");
 													}
 
 			  | NUM 			    				{
-														strcpy(intermediate_code[code_line_number],"lod ");
+														strcpy(intermediate_code[code_line_number],"get ");
 														sprintf(to_string,"%d",$1);
 														strcat(intermediate_code[code_line_number],to_string);
 														strcat(intermediate_code[code_line_number++],"\n");
 													}
 
 			  | TRUE								{
-														strcpy(intermediate_code[code_line_number],"lod ");
+														strcpy(intermediate_code[code_line_number],"get ");
 														strcat(intermediate_code[code_line_number],"true");
 														strcat(intermediate_code[code_line_number++],"\n");
 													}
 
 	  		  | FALSE 								{
-		 												strcpy(intermediate_code[code_line_number],"lod ");
+		 												strcpy(intermediate_code[code_line_number],"get ");
 														strcat(intermediate_code[code_line_number],"false");
 														strcat(intermediate_code[code_line_number++],"\n");
 	  												}
@@ -149,7 +149,7 @@ expression :    statement
 
 statement :
 				| IF expression LSQUARE 	{
-												strcpy(intermediate_code[code_line_number++],"fjp ");
+												strcpy(intermediate_code[code_line_number++],"bne ");
 											}
 
 				| RSQUARE				{
@@ -162,17 +162,17 @@ statement :
 										}
 
 				| STACK VAR  		{
-											strcpy(intermediate_code[code_line_number++],"stack ");
+											strcpy(intermediate_code[code_line_number++],"stk ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 								
 									}
 				|  PUSH VAR NUM 		{
-											strcat(intermediate_code[code_line_number++],"lod ");
+											strcat(intermediate_code[code_line_number++],"get ");
 											sprintf(to_string,"%d",$3);	
 											strcat(intermediate_code[code_line_number],to_string);
 											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number++],"push ");
+											strcpy(intermediate_code[code_line_number++],"psh ");
 											strcat(intermediate_code[code_line_number],$2);														
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
@@ -185,7 +185,7 @@ statement :
 										}
 										
 			   |  PEEK  VAR		{
-											strcpy(intermediate_code[code_line_number++],"peek ");
+											strcpy(intermediate_code[code_line_number++],"pek ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
@@ -198,23 +198,23 @@ statement :
 										}
 				| CALLFUNCTION VAR
 										{
-											strcpy(intermediate_code[code_line_number],"lod ");
+											strcpy(intermediate_code[code_line_number],"get ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number++],"cal\n");
+											strcpy(intermediate_code[code_line_number++],"run\n");
 										}
 
 				| FUNCTIONR		    	{
-											strcpy(intermediate_code[code_line_number++],"eof\n");
+											strcpy(intermediate_code[code_line_number++],"fnd\n");
 										}
 
 				| WHILE expression LFLOWER 	{
-												strcpy(intermediate_code[code_line_number++],"fjp ");
+												strcpy(intermediate_code[code_line_number++],"bne ");
 											}
 
 				| RETURN VAR			{
 
-											strcpy(intermediate_code[code_line_number],"rtn ");
+											strcpy(intermediate_code[code_line_number],"jbk ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
@@ -223,8 +223,8 @@ statement :
 											current_line_number=pop();
 											stored_location=pop();
 
-											strcpy(intermediate_code[code_line_number++],"lod 1\n");
-											strcpy(intermediate_code[code_line_number],"tjp ");
+											strcpy(intermediate_code[code_line_number++],"get 1\n");
+											strcpy(intermediate_code[code_line_number],"beq ");
 											sprintf(to_string,"%d",stored_location);
 											strcat(intermediate_code[code_line_number],to_string);
 											strcat(intermediate_code[code_line_number],"\n");
@@ -243,18 +243,18 @@ statement :
 											}
 
 				| READ VAR				{
-											strcpy(intermediate_code[code_line_number++],"rdv\n");
-											strcpy(intermediate_code[code_line_number],"sto ");
+											strcpy(intermediate_code[code_line_number++],"fth\n");
+											strcpy(intermediate_code[code_line_number],"put ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
 
 				| PRINT expression		 		{
-											strcpy(intermediate_code[code_line_number++],"prt\n");
+											strcpy(intermediate_code[code_line_number++],"dsp\n");
 										}
 
 				| VAR ASSIGN expression		{
-												strcpy(intermediate_code[code_line_number],"sto ");
+												strcpy(intermediate_code[code_line_number],"put ");
 												strcat(intermediate_code[code_line_number],$1);
 												strcat(intermediate_code[code_line_number++],"\n");
 											}
@@ -267,7 +267,7 @@ condition :			| expression GREATER expression	{
 														strcpy(intermediate_code[code_line_number++],"grt\n");
 													}
 					| expression LESS expression	{
-														strcpy(intermediate_code[code_line_number++],"les\n");
+														strcpy(intermediate_code[code_line_number++],"lst\n");
 													}
 ;
 

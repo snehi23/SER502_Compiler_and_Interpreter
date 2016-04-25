@@ -56,7 +56,7 @@ NUMBER				[0-9]
 
 "LOOP UNTIL" 		{ yylval.string=(char *)yytext; return WHILE; }
 
-"STK"			    { return STACK;}
+"STACK"			    { return STACK;}
 
 "FUNC"      		{ return FUNCTION; }
 
