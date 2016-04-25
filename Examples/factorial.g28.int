@@ -1,0 +1,25 @@
+fth
+put a
+get 1
+put product
+fun abc
+get a
+get 1
+grt
+bne 19
+get product
+get a
+mul
+put product
+get a
+get 1
+sub
+put a
+get abc
+run
+fnd
+get abc
+run
+get product
+dsp
+end
