@@ -38,7 +38,7 @@ namespace G28Run
                 return;
             }
             */
-            string fileName = @"C:\Users\SameerSrinivas\Desktop\Logical.txt";
+            string fileName = args[0];
             string line = string.Empty;
             StringBuilder code = new StringBuilder();
 
