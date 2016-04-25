@@ -11,7 +11,15 @@ Steps to compile .g28 code
 
 1. ./G28.g28 <file-name>.g28
 
-Steps to interpret and run code
+Steps to interpret and run code 
+
+JAVA:
 
 1. javac G28Run.java
 2. java G28Run <file-name>.g28.int
+
+
+C#:
+
+1. mcs G28Run.cs
+2. mono G28Run.exe <file-name>.g28.int
