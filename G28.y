@@ -43,7 +43,7 @@ int pop() {
 /* Tokens from FLEX*/
 
 
-%token LFLOWER RFLOWER LSQUARE RSQUARE FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK /* brackets */
+%token LFLOWER RFLOWER LSQUARE RSQUARE PARAML PARAMR FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK /* brackets */
 
 %token ASSIGN GREATER LESS AND OR NOT											/* boolean operators */
 
@@ -196,13 +196,44 @@ statement :
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}
-				| CALLFUNCTION VAR
+				| FUNCTION VAR PARAML VAR PARAMR FUNCTIONL
+										{
+											strcpy(intermediate_code[code_line_number],"fun ");
+											strcat(intermediate_code[code_line_number],$2);
+											strcat(intermediate_code[code_line_number++],"\n");
+											strcpy(intermediate_code[code_line_number],"put ");
+											strcat(intermediate_code[code_line_number],$4);
+											strcat(intermediate_code[code_line_number++],"\n");
+										}																
+
+				| CALLFUNCTION VAR 
 										{
 											strcpy(intermediate_code[code_line_number],"get ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 											strcpy(intermediate_code[code_line_number++],"run\n");
 										}
+				| CALLFUNCTION VAR PARAML VAR PARAMR  
+										{
+											strcpy(intermediate_code[code_line_number],"get ");
+											strcat(intermediate_code[code_line_number],$2);
+											strcat(intermediate_code[code_line_number++],"\n");
+											strcpy(intermediate_code[code_line_number],"get ");
+											strcat(intermediate_code[code_line_number],$4);
+											strcat(intermediate_code[code_line_number++],"\n");
+											strcpy(intermediate_code[code_line_number++],"run\n");
+										}
+				| CALLFUNCTION VAR PARAML NUM PARAMR  
+										{
+											strcpy(intermediate_code[code_line_number],"get ");
+											strcat(intermediate_code[code_line_number],$2);
+											strcat(intermediate_code[code_line_number++],"\n");
+											strcpy(intermediate_code[code_line_number],"get ");
+											sprintf(to_string,"%d",$4);
+											strcat(intermediate_code[code_line_number],to_string);
+											strcat(intermediate_code[code_line_number++],"\n");
+											strcpy(intermediate_code[code_line_number++],"run\n");
+										}												
 
 				| FUNCTIONR		    	{
 											strcpy(intermediate_code[code_line_number++],"fnd\n");

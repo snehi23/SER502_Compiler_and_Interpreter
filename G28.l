@@ -54,6 +54,10 @@ NUMBER				[0-9]
 
 "]"					{ return RSQUARE; }
 
+"<"         { return PARAML; }
+
+">"         { return PARAMR; }
+
 "LOOP UNTIL" 		{ yylval.string=(char *)yytext; return WHILE; }
 
 "STACK"			    { return STACK;}
