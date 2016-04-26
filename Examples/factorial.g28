@@ -1,17 +1,16 @@
 SCAN a :
 product EQ 1 :
-sum EQ 0 :
 
-FUNC abc LFT :
+FUNC abc <a> LFT :
 
 CON ( a GT 1 ) [ :
 product EQ product * a :
 a EQ a - 1 :
-CALL abc :
+CALL abc <a> :
 ] :
 
 RHT :
 
-CALL abc :
+CALL abc <a> :
 
 FLASH product :
