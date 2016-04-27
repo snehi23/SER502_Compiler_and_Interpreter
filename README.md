@@ -1,5 +1,5 @@
 # SER502_Compiler_and_Interpreter
-Language Design Project using flex and bison for compiler and python for interpreter [Run time environment]
+Language Design Project using flex and bison for compiler and C# for interpreter [Run time environment]
 
 Steps to generate G28.g28 executable
 
