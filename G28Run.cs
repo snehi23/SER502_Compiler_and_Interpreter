@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,19 +25,19 @@ namespace G28Run
         public static Dictionary<string, Stack<int>> stackHashmapGlobalValues = new Dictionary<string, Stack<int>>();
         public static Dictionary<string, Stack<int>> functions = new Dictionary<string, Stack<int>>();
         public static Stack<int> functionStack = new Stack<int>();
+        public static Stack<int> functionArgumentStack = new Stack<int>();
         public static List<string> OpCodes = new List<string>();
 
         #endregion
 
         static void Main(string[] args)
         {
-            
             if(string.IsNullOrEmpty(args[0]))
             {
-                Console.WriteLine("Please input file name");
+                Console.WriteLine("Please input the file name");
                 return;
             }
-            
+
             string fileName = args[0];
             string line = string.Empty;
             StringBuilder code = new StringBuilder();
@@ -51,7 +51,6 @@ namespace G28Run
                         code.Append(line + " ");
                     }
                 }
-                // allTokens = code.ToString().Split(' ').ToList();
                 allTokens = Regex.Split(code.ToString(),@"\s+");
                 allOperations = new string[allTokens.Length];
                 allValues = new string[allTokens.Length];
@@ -110,18 +109,21 @@ namespace G28Run
                     {
                         booleanHashmapGlobalValues[operand] = boolStack.Pop();
                     }
+                    else if(currentFunction.Count > 0 && intstack.Count > 0)
+                    {
+                        if(intHashMap.ContainsKey(operand))
+                        {
+                            intHashMap[operand] = intstack.Pop();
+                        }
+                        else
+                        {
+                            intHashMapGlobalValues[operand] = intstack.Pop();
+                        }
+                    }
                     else if(currentFunction.Count > 0 && boolStack.Count > 0)
                     {
-                        booleanHashmapGlobalValues[operand] = boolStack.Pop();
-                    }
-                    else if(intHashMapGlobalValues.ContainsKey(operand))
-                    {
-                        intHashMapGlobalValues[operand] = intstack.Pop();
-                    }
-                    else
-                    {
-                        intHashMap[operand] = intstack.Pop();
-                    }
+                        boolHashMap[operand] = boolStack.Pop();
+                    }                    
                 }
 
                 if(opCode.Equals("stk"))
@@ -186,13 +188,13 @@ namespace G28Run
                     bool isInteger = CheckIsInteger(operand);
                     if(!isInteger)
                     {
-                        if(intHashMapGlobalValues.ContainsKey(operand))
-                        {
-                            intstack.Push(intHashMapGlobalValues[operand]);
-                        }
-                        else if(intHashMap.ContainsKey(operand))
+                        if(intHashMap.ContainsKey(operand))
                         {
                             intstack.Push(intHashMap[operand]);
+                        }
+                        else if (intHashMapGlobalValues.ContainsKey(operand))
+                        {
+                            intstack.Push(intHashMapGlobalValues[operand]);
                         }
                         else if(functions.ContainsKey(operand))
                         {
@@ -233,6 +235,30 @@ namespace G28Run
                     else
                     {
                         intstack.Push(Int32.Parse(operand));
+                    }
+                }
+
+                if(opCode.Equals("gta"))
+                {
+                    bool isInteger = CheckIsInteger(operand);
+                    if (!isInteger)
+                    {
+                        if (intHashMapGlobalValues.ContainsKey(operand))
+                        {
+                            functionArgumentStack.Push(intHashMapGlobalValues[operand]);
+                        }
+                    }
+                    else
+                    {
+                        functionArgumentStack.Push(Int32.Parse(operand));
+                    }
+                }
+
+                if(opCode.Equals("pta"))
+                {
+                    if (functionArgumentStack.Count > 0)
+                    {
+                        intHashMap[operand] = functionArgumentStack.Pop();
                     }
                 }
 
@@ -476,7 +502,7 @@ namespace G28Run
         public static void InitializeOpcodes()
         {
             string[] list = new string[] { "asn", "lst", "jbk", "run", "fnd", "fun", "add", "sub", "mul", "div", "put", "get",
-            "bne", "beq", "dsp", "grt", "fth", "and", "or", "not","psh", "pop", "pek", "stk"};
+            "bne", "beq", "dsp", "grt", "fth", "and", "or", "not","psh", "pop", "pek", "stk", "gta", "pta"};
             foreach(string s in list)
             {
                 OpCodes.Add(s);
