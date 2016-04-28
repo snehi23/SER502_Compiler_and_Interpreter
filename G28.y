@@ -43,7 +43,7 @@ int pop() {
 /* Tokens from FLEX*/
 
 
-%token LFLOWER RFLOWER LSQUARE RSQUARE PARAML PARAMR FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK /* brackets */
+%token LFLOWER RFLOWER LSQUARE RSQUARE PARAML PARAMR FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK STRING /* brackets */
 
 %token ASSIGN GREATER LESS AND OR NOT											/* boolean operators */
 
@@ -65,7 +65,7 @@ int pop() {
 
 %token <string> VAR   														/* VAR token contains a variable */
 
-
+%token <string> STRING
 
 %type <val> 	expression
 
@@ -143,11 +143,29 @@ expression :    statement
 														strcat(intermediate_code[code_line_number],"false");
 														strcat(intermediate_code[code_line_number++],"\n");
 	  												}
+			
 
 
 ;
 
 statement :
+										  
+			  | VAR ASSIGN STRING                    {
+			  											strcpy(intermediate_code[code_line_number],"str ");
+														strcat(intermediate_code[code_line_number],$3);
+														strcat(intermediate_code[code_line_number++],"\n");
+											strcat(intermediate_code[code_line_number],"put ");
+											strcat(intermediate_code[code_line_number],$1);
+											strcat(intermediate_code[code_line_number++],"\n");
+											
+											
+											}
+				|PRINT STRING              {strcpy(intermediate_code[code_line_number],"str ");
+												strcat(intermediate_code[code_line_number],$2);
+											strcat(intermediate_code[code_line_number++],"\n");
+											strcat(intermediate_code[code_line_number++],"dsp\n");
+											
+										}
 				| IF expression LSQUARE 	{
 												strcpy(intermediate_code[code_line_number++],"bne ");
 											}

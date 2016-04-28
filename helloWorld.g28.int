@@ -1,0 +1,7 @@
+str "abir"
+put a
+get a
+dsp
+str "raj"
+dsp
+end

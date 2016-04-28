@@ -18,6 +18,7 @@ public class G28Run {
 	public static HashMap<String, Double> functionreturn= new HashMap<String,Double>();
 	public static HashMap<String, Double> hashmapglobalvalues = new HashMap<String, Double>();
 	public static HashMap<String, Boolean> booleanhashmapglobalvalues = new HashMap<String, Boolean>();
+	public static HashMap<String, String> stringhashmapglobalvalues = new HashMap<String, String>();
 	public static HashMap<String, Stack<Integer>> stackhashmapglobalvalues = new HashMap<String, Stack<Integer>>();
 	public static HashMap<String, Deque<Integer>> functions= new HashMap<String,Deque<Integer>>();
 	public static Deque<Integer> functionstack = new ArrayDeque<Integer>();
@@ -52,7 +53,7 @@ public class G28Run {
 			while(!alltokens[n].equals("end"))
 
 			{ 
-				if ((alltokens[n].equals("asn")) ||(alltokens[n].equals("lst")) ||(alltokens[n].equals("jbk")) ||(alltokens[n].equals("run")) ||(alltokens[n].equals("fnd")) ||(alltokens[n].equals("fun")) ||(alltokens[n].equals("add")) ||(alltokens[n].equals("sub")) ||(alltokens[n].equals("mul")) ||(alltokens[n].equals("div")) ||(alltokens[n].equals("put")) || (alltokens[n].equals("get"))|| (alltokens[n].equals("bne")) || (alltokens[n].equals("beq"))|| (alltokens[n].equals("dsp"))|| (alltokens[n].equals("grt"))|| (alltokens[n].equals("fth"))||(alltokens[n].equals("stk"))||(alltokens[n].equals("psh"))||(alltokens[n].equals("pop"))||(alltokens[n].equals("pek"))|| (alltokens[n].equals("and")) ||(alltokens[n].equals("or")) ||(alltokens[n].equals("not")))
+				if ((alltokens[n].equals("asn")) ||(alltokens[n].equals("lst")) ||(alltokens[n].equals("jbk")) ||(alltokens[n].equals("run")) ||(alltokens[n].equals("fnd")) ||(alltokens[n].equals("fun")) ||(alltokens[n].equals("add")) ||(alltokens[n].equals("sub")) ||(alltokens[n].equals("mul")) ||(alltokens[n].equals("div")) ||(alltokens[n].equals("put")) || (alltokens[n].equals("get"))|| (alltokens[n].equals("bne")) || (alltokens[n].equals("beq"))|| (alltokens[n].equals("dsp"))|| (alltokens[n].equals("grt"))|| (alltokens[n].equals("fth"))||(alltokens[n].equals("stk"))||(alltokens[n].equals("psh"))||(alltokens[n].equals("pop"))||(alltokens[n].equals("pek"))|| (alltokens[n].equals("and")) ||(alltokens[n].equals("or")) ||(alltokens[n].equals("not"))||(alltokens[n].equals("str")))
 				{alloperations[m]= alltokens[n];
 				m += 1;}
 				else {allvalues[m-1]= alltokens[n];
@@ -79,11 +80,13 @@ public class G28Run {
 		
 				Deque<Double> stack = new ArrayDeque<Double>();
 				Deque<Boolean> booleanstack = new ArrayDeque<Boolean>();
+				Deque<String> stringstack = new ArrayDeque<String>();
 				Deque<Stack<Integer>> superstack = new ArrayDeque<Stack<Integer>>();
 				
 		
 				HashMap<String, Double> hashmapvalues = new HashMap<String, Double>();
 				HashMap<String, Boolean> booleanhashmapvalues = new HashMap<String, Boolean>();
+				HashMap<String, String> stringhashmapvalues = new HashMap<String, String>();
 				HashMap<String, Stack<Integer>>  stackhashmapvalues = new HashMap<String, Stack<Integer>>();
 		
 			
@@ -101,7 +104,7 @@ public class G28Run {
 						stack.push(input);
 					}
 					
-					if ((operations[i].equals("put")&&((stack.isEmpty()==false)||(booleanstack.isEmpty()==false)))) {   
+					if ((operations[i].equals("put")&&((stack.isEmpty()==false)||(booleanstack.isEmpty()==false)||(stringstack.isEmpty()==false)))) {   
 						
 						if((currentfunction.isEmpty())&&(stack.peek()!=null)) {
 							hashmapglobalvalues.put(values[i], stack.pop());
@@ -111,7 +114,11 @@ public class G28Run {
 							booleanhashmapvalues.put(values[i], booleanstack.pop());
 						} else if(hashmapglobalvalues.get(values[i])!=null){
 							hashmapglobalvalues.put(values[i],stack.pop());
-						}
+						}  else if ((currentfunction.isEmpty())&&(stringstack.peek()!=null)) {
+							stringhashmapglobalvalues.put(values[i], stringstack.pop());
+						} else if ((!currentfunction.isEmpty())&&(stringstack.peek()!=null)) {
+							stringhashmapvalues.put(values[i], stringstack.pop());
+						} 
 						else {
 							hashmapvalues.put(values[i],stack.pop());
 						}
@@ -126,6 +133,12 @@ public class G28Run {
 							stackhashmapvalues.put(values[i],new Stack<Integer>());
 						}
 					}
+					
+					if (operations[i].equals("str")) {
+
+						stringstack.push(values[i]);
+					}
+					
 					
 					if(operations[i].equals("psh")) {
 
@@ -221,7 +234,15 @@ public class G28Run {
 							} else if(stackhashmapvalues.get(values[i])!=null) {
 
 								superstack.push(stackhashmapvalues.get(values[i]));
-							} else {
+							}  else if(stringhashmapglobalvalues.get(values[i])!=null) {
+
+								stringstack.push(stringhashmapglobalvalues.get(values[i]));
+
+							} else if(stringhashmapvalues.get(values[i])!=null) {
+
+								stringstack.push(stringhashmapvalues.get(values[i]));
+							}  
+							else {
 								out.println("Error on load!");
 							}
 						}
@@ -433,6 +454,10 @@ public class G28Run {
 						} else if(superstack.isEmpty()==false) {
 
 							out.println(superstack.pop().toString());
+						}  else if(stringstack.isEmpty()==false) {
+							String s = stringstack.pop();
+							out.println(s.substring(1,s.length()-1));
+				
 						}
 					}
 				}	

@@ -84,6 +84,8 @@ NUMBER				[0-9]
 
 "PEEK"              {return PEEK;}
 
+\"(\\.|[^"])*\"     {yylval.string=(char *)yytext;return STRING;}
+
 
 "//".*                                    { /* DO NOTHING */ }
 [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]       { /* DO NOTHING */ }

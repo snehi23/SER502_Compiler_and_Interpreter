@@ -43,37 +43,40 @@
      RFLOWER = 259,
      LSQUARE = 260,
      RSQUARE = 261,
-     FUNCTIONL = 262,
-     FUNCTIONR = 263,
-     LPAREN = 264,
-     RPAREN = 265,
-     STACK = 266,
-     PUSH = 267,
-     POP = 268,
-     PEEK = 269,
-     ASSIGN = 270,
-     GREATER = 271,
-     LESS = 272,
-     AND = 273,
-     OR = 274,
-     NOT = 275,
-     TRUE = 276,
-     FALSE = 277,
-     PLUS = 278,
-     SUB = 279,
-     MULTIPLY = 280,
-     DIV = 281,
-     IF = 282,
-     ELSE = 283,
-     WHILE = 284,
-     FUNCTION = 285,
-     READ = 286,
-     PRINT = 287,
-     CALLFUNCTION = 288,
-     RETURN = 289,
-     END = 290,
-     NUM = 291,
-     VAR = 292
+     PARAML = 262,
+     PARAMR = 263,
+     FUNCTIONL = 264,
+     FUNCTIONR = 265,
+     LPAREN = 266,
+     RPAREN = 267,
+     STACK = 268,
+     PUSH = 269,
+     POP = 270,
+     PEEK = 271,
+     STRING = 272,
+     ASSIGN = 273,
+     GREATER = 274,
+     LESS = 275,
+     AND = 276,
+     OR = 277,
+     NOT = 278,
+     TRUE = 279,
+     FALSE = 280,
+     PLUS = 281,
+     SUB = 282,
+     MULTIPLY = 283,
+     DIV = 284,
+     IF = 285,
+     ELSE = 286,
+     WHILE = 287,
+     FUNCTION = 288,
+     READ = 289,
+     PRINT = 290,
+     CALLFUNCTION = 291,
+     RETURN = 292,
+     END = 293,
+     NUM = 294,
+     VAR = 295
    };
 #endif
 /* Tokens.  */
@@ -81,37 +84,40 @@
 #define RFLOWER 259
 #define LSQUARE 260
 #define RSQUARE 261
-#define FUNCTIONL 262
-#define FUNCTIONR 263
-#define LPAREN 264
-#define RPAREN 265
-#define STACK 266
-#define PUSH 267
-#define POP 268
-#define PEEK 269
-#define ASSIGN 270
-#define GREATER 271
-#define LESS 272
-#define AND 273
-#define OR 274
-#define NOT 275
-#define TRUE 276
-#define FALSE 277
-#define PLUS 278
-#define SUB 279
-#define MULTIPLY 280
-#define DIV 281
-#define IF 282
-#define ELSE 283
-#define WHILE 284
-#define FUNCTION 285
-#define READ 286
-#define PRINT 287
-#define CALLFUNCTION 288
-#define RETURN 289
-#define END 290
-#define NUM 291
-#define VAR 292
+#define PARAML 262
+#define PARAMR 263
+#define FUNCTIONL 264
+#define FUNCTIONR 265
+#define LPAREN 266
+#define RPAREN 267
+#define STACK 268
+#define PUSH 269
+#define POP 270
+#define PEEK 271
+#define STRING 272
+#define ASSIGN 273
+#define GREATER 274
+#define LESS 275
+#define AND 276
+#define OR 277
+#define NOT 278
+#define TRUE 279
+#define FALSE 280
+#define PLUS 281
+#define SUB 282
+#define MULTIPLY 283
+#define DIV 284
+#define IF 285
+#define ELSE 286
+#define WHILE 287
+#define FUNCTION 288
+#define READ 289
+#define PRINT 290
+#define CALLFUNCTION 291
+#define RETURN 292
+#define END 293
+#define NUM 294
+#define VAR 295
 
 
 
@@ -124,7 +130,7 @@ typedef union YYSTYPE
 	char *string;
 }
 /* Line 1529 of yacc.c.  */
-#line 128 "G28.tab.h"
+#line 134 "G28.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
