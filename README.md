@@ -23,13 +23,13 @@ Steps to install mono framework on
 
 a) mac OSX
 
-1. Download Mono 32-bit from [http://www.mono-project.com/download/]  (Works on 64 bit machines too)
-2. Follow the installation guidelines from [http://www.mono-project.com/docs/about-mono/supported-platforms/osx/]
+1. Download Mono 32-bit from http://www.mono-project.com/download/  (Works on 64 bit machines too)
+2. Follow the installation guidelines from http://www.mono-project.com/docs/about-mono/supported-platforms/osx/
 
 b) Windows
 
-1. Download Mono 32-bit from [http://www.mono-project.com/download/]  (Works on 64 bit machines too)
-2. Follow the installation guidelines from [http://www.mono-project.com/docs/getting-started/install/windows/] 
+1. Download Mono 32-bit from http://www.mono-project.com/download/  (Works on 64 bit machines too)
+2. Follow the installation guidelines from http://www.mono-project.com/docs/getting-started/install/windows/ 
 
 c) LINUX
 
