@@ -11,15 +11,7 @@ Steps to compile .g28 code
 
 1. ./G28.g28 <file-name>.g28
 
-Steps to interpret and run code 
-
-JAVA:
-
-1. javac G28Run.java
-2. java G28Run <file-name>.g28.int
-
-
-C#: [on mac OSX/LINUX]
+Steps to interpret and run code [on Windows/mac OSX/LINUX]
 
 1. mcs G28Run.cs
 2. mono G28Run.exe <file-name>.g28.int
@@ -27,14 +19,19 @@ C#: [on mac OSX/LINUX]
 
 Installation Note:
 
-Steps to install C# on mac OSX
+Steps to install mono framework on 
 
-1. Download here [http://www.mono-project.com/download/]
+a) mac OSX
 
-2. Follow guidelines here [http://www.mono-project.com/docs/about-mono/supported-platforms/osx/]
+1. Download Mono 32-bit from [http://www.mono-project.com/download/]  (Works on 64 bit machines too)
+2. Follow the installation guidelines from [http://www.mono-project.com/docs/about-mono/supported-platforms/osx/]
 
+b) Windows
 
-Steps to install C# on LINUX
+1. Download Mono 32-bit from [http://www.mono-project.com/download/]  (Works on 64 bit machines too)
+2. Follow the installation guidelines from [http://www.mono-project.com/docs/getting-started/install/windows/] 
+
+c) LINUX
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 
