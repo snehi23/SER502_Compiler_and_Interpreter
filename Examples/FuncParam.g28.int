@@ -1,0 +1,30 @@
+fth
+
+put a
+
+get 1
+put b
+get b
+dsp
+fun abc
+
+pta b
+
+get 10
+get b
+add
+put b
+get b
+
+dsp
+
+fnd
+
+get abc
+
+gta a
+run
+
+get b
+dsp
+end

@@ -1,0 +1,12 @@
+SCAN a :
+
+b EQ 1 :       
+FUNC abc <b> LFT :
+
+b EQ b + 10 :
+FLASH b :
+
+RHT :
+
+CALL abc <a> :
+FLASH b :
