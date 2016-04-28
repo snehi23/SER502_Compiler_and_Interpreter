@@ -201,7 +201,7 @@ statement :
 											strcpy(intermediate_code[code_line_number],"fun ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number],"put ");
+											strcpy(intermediate_code[code_line_number],"pta ");
 											strcat(intermediate_code[code_line_number],$4);
 											strcat(intermediate_code[code_line_number++],"\n");
 										}																
@@ -218,7 +218,7 @@ statement :
 											strcpy(intermediate_code[code_line_number],"get ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number],"get ");
+											strcpy(intermediate_code[code_line_number],"gta ");
 											strcat(intermediate_code[code_line_number],$4);
 											strcat(intermediate_code[code_line_number++],"\n");
 											strcpy(intermediate_code[code_line_number++],"run\n");
@@ -228,7 +228,7 @@ statement :
 											strcpy(intermediate_code[code_line_number],"get ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number],"get ");
+											strcpy(intermediate_code[code_line_number],"gta ");
 											sprintf(to_string,"%d",$4);
 											strcat(intermediate_code[code_line_number],to_string);
 											strcat(intermediate_code[code_line_number++],"\n");
