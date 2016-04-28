@@ -34,7 +34,7 @@ namespace G28Run
         {
             if(string.IsNullOrEmpty(args[0]))
             {
-                Console.WriteLine("Please input the file name");
+                Console.WriteLine("Please input the file name and try again");
                 return;
             }
 
@@ -243,7 +243,11 @@ namespace G28Run
                     bool isInteger = CheckIsInteger(operand);
                     if (!isInteger)
                     {
-                        if (intHashMapGlobalValues.ContainsKey(operand))
+                        if (intHashMap.ContainsKey(operand))
+                        {
+                            functionArgumentStack.Push(intHashMap[operand]);
+                        }
+                        else if (intHashMapGlobalValues.ContainsKey(operand))
                         {
                             functionArgumentStack.Push(intHashMapGlobalValues[operand]);
                         }
