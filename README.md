@@ -32,6 +32,7 @@ b) Windows
 2. Follow the installation guidelines from http://www.mono-project.com/docs/getting-started/install/windows/ 
 
 c) LINUX
+
 Run the following commands from a terminal:
 
 1) sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
