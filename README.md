@@ -5,16 +5,16 @@ Steps to generate G28.g28 executable
 
 1. flex G28.l
 2. bison -d G28.y
-3. gcc -o G28.g28 lex.yy.c G28.tab.c -ll -lm
+3. gcc -o Compiler.exe lex.yy.c G28.tab.c -ll -lm
 
 Steps to compile .g28 code
 
-1. ./G28.g28 <file-name>.g28
+1. ./Compiler.exe <file-name>.g28
 
 Steps to interpret and run code [on Windows/mac OSX/LINUX]
 
 1. mcs G28Run.cs
-2. mono G28Run.exe <file-name>.g28.int
+2. mono G28Run.exe <file-name>.g28.asm
 
 
 Installation Note:
