@@ -1,15 +1,15 @@
-get 5
+fth
 put a
 get a
-get 10
-lst
-bne 9
+get 1
+grt
+bne 13
 get a
 dsp
+get a
 get 1
-beq 12
-str "elsepart"
-dsp
-str "outsideelse"
-dsp
+sub
+put a
+get 1
+beq 2
 end
