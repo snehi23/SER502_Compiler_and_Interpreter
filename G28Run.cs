@@ -23,6 +23,7 @@ namespace G28Run
         public static Dictionary<string, int> intHashMapGlobalValues = new Dictionary<string, int>();
         public static Dictionary<string, bool> booleanHashmapGlobalValues = new Dictionary<string, bool>();
         public static Dictionary<string, Stack<int>> stackHashmapGlobalValues = new Dictionary<string, Stack<int>>();
+        public static Dictionary<string, string> stringHashmapGlobalValues = new Dictionary<string, string>();
         public static Dictionary<string, Stack<int>> functions = new Dictionary<string, Stack<int>>();
         public static Stack<int> functionStack = new Stack<int>();
         public static Stack<int> functionArgumentStack = new Stack<int>();
@@ -75,10 +76,12 @@ namespace G28Run
             // Declarations
             Stack<int> intstack = new Stack<int>();
             Stack<bool> boolStack = new Stack<bool>();
+            Stack<string> stringStack = new Stack<string>();
             Stack<Stack<int>> superStack = new Stack<Stack<int>>();
 
             Dictionary<string, int> intHashMap = new Dictionary<string, int>();
             Dictionary<string, bool> boolHashMap = new Dictionary<string, bool>();
+            Dictionary<string, string> stringHashMap = new Dictionary<string, string>();
             Dictionary<string, Stack<int>> stackHashMap = new Dictionary<string, Stack<int>>();
 
             string opCode, operand;
@@ -100,7 +103,7 @@ namespace G28Run
                     intstack.Push(input);
                 }
 
-                if(opCode.Equals("put") && ((intstack.Count > 0) || (boolStack.Count > 0) || valueReturnFromFunction.Count > 0))
+                else if(opCode.Equals("put") && ((intstack.Count > 0) || (boolStack.Count > 0) || (valueReturnFromFunction.Count > 0) || (stringStack.Count > 0)))
                 {
                     if(currentFunction.Count == 0 && intstack.Count > 0)
                     {
@@ -129,6 +132,14 @@ namespace G28Run
                     {
                         boolHashMap[operand] = boolStack.Pop();
                     }
+                    else if(currentFunction.Count == 0 && stringStack.Count > 0)
+                    {
+                        stringHashmapGlobalValues[operand] = stringStack.Pop();
+                    }
+                    else if(currentFunction.Count > 0 && stringStack.Count > 0)
+                    {
+                        stringHashMap[operand] = stringStack.Pop();
+                    }
                     else if(valueReturnFromFunction.Count > 0)
                     {
                         if (intHashMap.ContainsKey(operand))
@@ -146,7 +157,12 @@ namespace G28Run
                     }                    
                 }
 
-                if(opCode.Equals("stk"))
+                else if (opCode.Equals("str"))
+                {
+                    stringStack.Push(operand);
+                }
+
+                else if (opCode.Equals("stk"))
                 {
                     if(currentFunction.Count == 0)
                     {
@@ -158,7 +174,7 @@ namespace G28Run
                     }
                 }
 
-                if(opCode.Equals("psh"))
+                else if (opCode.Equals("psh"))
                 {
                     if(currentFunction.Count == 0 && intstack.Count > 0)
                     {
@@ -174,7 +190,7 @@ namespace G28Run
                     }
                 }
 
-                if(opCode.Equals("pop"))
+                else if (opCode.Equals("pop"))
                 {
                     if (currentFunction.Count == 0)
                     {
@@ -189,7 +205,7 @@ namespace G28Run
                 }
 
 
-                if (opCode.Equals("pek"))
+                else if (opCode.Equals("pek"))
                 {
                     if (currentFunction.Count == 0)
                     {
@@ -203,7 +219,7 @@ namespace G28Run
                     }
                 }
 
-                if (opCode.Equals("get"))
+                else if (opCode.Equals("get"))
                 {
                     bool isInteger = CheckIsInteger(operand);
                     if(!isInteger)
@@ -247,6 +263,14 @@ namespace G28Run
                         {
                             superStack.Push(stackHashMap[operand]);
                         }
+                        else if(stringHashmapGlobalValues.ContainsKey(operand))
+                        {
+                            stringStack.Push(stringHashmapGlobalValues[operand]);
+                        }
+                        else if(stringHashMap.ContainsKey(operand))
+                        {
+                            stringStack.Push(stringHashMap[operand]);
+                        }
                         else
                         {
                             Console.WriteLine("Error on load");
@@ -258,7 +282,7 @@ namespace G28Run
                     }
                 }
 
-                if(opCode.Equals("gta"))
+                else if (opCode.Equals("gta"))
                 {
                     bool isInteger = CheckIsInteger(operand);
                     if (!isInteger)
@@ -278,7 +302,7 @@ namespace G28Run
                     }
                 }
 
-                if(opCode.Equals("pta"))
+                else if (opCode.Equals("pta"))
                 {
                     if (functionArgumentStack.Count > 0)
                     {
@@ -286,7 +310,7 @@ namespace G28Run
                     }
                 }
 
-                if(opCode.Equals("fun") && intstack.Count == 0)
+                else if (opCode.Equals("fun") && intstack.Count == 0)
                 {
                     int temp = i;
                     while(!operations[++i].Equals("fnd"))
@@ -299,7 +323,7 @@ namespace G28Run
                     functions.Add(operand, startAndEnd);
                 }
 
-                if(opCode.Equals("jbk") && intstack.Count == 0)
+                else if (opCode.Equals("jbk") && intstack.Count == 0)
                 {
                     bool isInteger = CheckIsInteger(operand);
                     if(!isInteger)
@@ -320,7 +344,7 @@ namespace G28Run
                     i = 100;
                 }
 
-                if(opCode.Equals("run") && (operand == null || operand == string.Empty))
+                else if (opCode.Equals("run") && (operand == null || operand == string.Empty))
                 {
                     int right = functionStack.Pop();
                     int left = functionStack.Pop();
@@ -338,7 +362,7 @@ namespace G28Run
                 }
 
 
-                if((intstack.Count > 0) && (opCode.Equals("add") || opCode.Equals("sub") || opCode.Equals("mul") || opCode.Equals("div") ||
+                else if ((intstack.Count > 0) && (opCode.Equals("add") || opCode.Equals("sub") || opCode.Equals("mul") || opCode.Equals("div") ||
                     opCode.Equals("grt") || opCode.Equals("lst") || opCode.Equals("asn")))
                 {
                     bool isReturnValue = false;
@@ -430,7 +454,7 @@ namespace G28Run
                     }
                 }
 
-                if ((boolStack.Count > 0) && (opCode.Equals("asn") || opCode.Equals("and") || opCode.Equals("or")))
+                else if ((boolStack.Count > 0) && (opCode.Equals("asn") || opCode.Equals("and") || opCode.Equals("or")))
                 {
                     bool right = boolStack.Pop();
                     bool left = boolStack.Pop();
@@ -471,7 +495,7 @@ namespace G28Run
                     }
                 }
 
-                if(boolStack.Count > 0 && opCode.Equals("not"))
+                else if (boolStack.Count > 0 && opCode.Equals("not"))
                 {
                     bool value = boolStack.Pop();
                     if (!value)
@@ -485,7 +509,7 @@ namespace G28Run
                     break;
                 }
 
-                if(opCode.Equals("bne") && intstack.Count > 0)
+                else if (opCode.Equals("bne") && intstack.Count > 0)
                 {
                     if(intstack.Peek() == 0)
                     {
@@ -514,7 +538,7 @@ namespace G28Run
                     }
                 }
 
-                if (opCode.Equals("beq") && intstack.Count > 0)
+                else if (opCode.Equals("beq") && intstack.Count > 0)
                 {
                     if (intstack.Peek() == 1)
                     {
@@ -522,8 +546,8 @@ namespace G28Run
                         intstack.Pop();
                     }
                 }
-                
-                if(opCode.Equals("dsp"))
+
+                else if (opCode.Equals("dsp"))
                 {
                     if(intstack.Count > 0)
                     {
@@ -539,6 +563,10 @@ namespace G28Run
                         {
                             Console.WriteLine(ele + " ");
                         }
+                    }
+                    else if(stringStack.Count > 0)
+                    {
+                        Console.WriteLine(stringStack.Pop().Trim('"')); 
                     }
                 }
 
@@ -585,7 +613,7 @@ namespace G28Run
         public static void InitializeOpcodes()
         {
             string[] list = new string[] { "asn", "lst", "jbk", "run", "fnd", "fun", "add", "sub", "mul", "div", "put", "get",
-            "bne", "beq", "dsp", "grt", "fth", "and", "or", "not","psh", "pop", "pek", "stk", "gta", "pta"};
+            "bne", "beq", "dsp", "grt", "fth", "and", "or", "not","psh", "pop", "pek", "stk", "gta", "pta", "str"};
             foreach(string s in list)
             {
                 OpCodes.Add(s);
