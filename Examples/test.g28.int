@@ -1,30 +1,15 @@
-fth
+get 5
 put a
-fun abc
-pta b
-get b
-get 2
+get a
+get 10
 lst
-bne 10
-jbk b
-get b
+bne 9
+get a
+dsp
 get 1
-sub
-put e
-gta e
-get abc
-run
-put c
-get b
-get c
-mul
-put b
-jbk b
-fnd
-gta a
-get abc
-run
-put c
-get c
+beq 12
+str "elsepart"
+dsp
+str "outsideelse"
 dsp
 end
