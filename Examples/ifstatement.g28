@@ -1,9 +1,10 @@
 // Program implementing if-else functionality:
-a EQ 5:
-CON (a LS 10) [:
-FLASH a:
+a = 5:
+if (a > 10) [:
+print "Inside_if_block":
+print a:
 ]: 
-INSTEAD #:
-FLASH "elsepart":
-$:
-FLASH "outsideelse":
+else [:
+print "inside_else_block":
+]:
+print "outside_else_block":

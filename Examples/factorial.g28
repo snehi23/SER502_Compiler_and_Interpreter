@@ -1,17 +1,15 @@
-//Factorial Program:
-SCAN a :
-product EQ 1 :
-
-FUNC abc <a> LFT :
-
-CON ( a GT 1 ) [ :
-product EQ product * a :
-a EQ a - 1 :
-CALL abc <a> :
+//Factorial Program---Iterative Way:
+scan a :
+product = 1 :
+func abc <<a>> fstart :
+if ( a > 1 ) [ :
+product = product * a :
+a = a - 1 :
+call abc <<a>> :
 ] :
-
-RHT :
-
-CALL abc <a> :
-
-FLASH product :
+else[:
+]:
+fend :
+call abc <<a>> :
+print "The_factorial_result_is":
+print product :

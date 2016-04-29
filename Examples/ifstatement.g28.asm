@@ -2,14 +2,17 @@ get 5
 put a
 get a
 get 10
-lst
-bne 9
+grt
+bne 11
+str "Inside_if_block"
+dsp
 get a
 dsp
 get 1
-beq 12
-str "elsepart"
+beq 14
+str "inside_else_block"
 dsp
-str "outsideelse"
+str "outside_else_block"
+dsp
 dsp
 end

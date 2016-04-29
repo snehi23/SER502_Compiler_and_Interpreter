@@ -1,6 +1,6 @@
 //Program showing While Statement functionality:
-SCAN a:
-LOOP UNTIL (a GT 1) { :
-FLASH a :
-a EQ a - 1 :
+scan a:
+while (a > 0) { :
+print a :
+a = a - 1 :
 } :

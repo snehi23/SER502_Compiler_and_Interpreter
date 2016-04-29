@@ -1,4 +1,4 @@
-//Program to check assignment operation:
-SCAN a:
-a EQS a + 1:
-FLASH a:
+//Program to check assignment operation :
+scan a:
+b = a+1:
+print b:

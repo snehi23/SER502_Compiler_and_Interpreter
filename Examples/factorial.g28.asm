@@ -16,13 +16,19 @@ get a
 get 1
 sub
 put a
-get abc
 gta a
+get abc
 run
+get 1
+beq 23
 fnd
-get abc
 gta a
+get abc
 run
+str "The_factorial_result_is"
+dsp
+_is"
+dsp
 get product
 dsp
 end

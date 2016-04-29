@@ -1,6 +1,6 @@
-a EQ T :
-b EQ F :
-c EQ a & b :
-FLASH c :
-d EQ a | b :
-FLASH d :
+a = true :
+b = false :
+c = a & b :
+print c :
+d = a | b :
+print d :

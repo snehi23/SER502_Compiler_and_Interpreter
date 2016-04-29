@@ -1,2 +1,2 @@
 // Hello_World Example in Lang28:
-FLASH "Hello_World!!":
+print "Hello_World!!":

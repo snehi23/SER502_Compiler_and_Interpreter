@@ -3,7 +3,7 @@ put a
 get a
 get 1
 add
-put a
-get a
+put b
+get b
 dsp
 end
