@@ -33,13 +33,12 @@ namespace G28Run
 
         static void Main(string[] args)
         {
-            
             if(string.IsNullOrEmpty(args[0]))
             {
                 Console.WriteLine("Please input the file name and try again");
                 return;
             }
-            
+
             string fileName = args[0];
             string line = string.Empty;
             StringBuilder code = new StringBuilder();
@@ -592,7 +591,7 @@ namespace G28Run
             int m = 0;
             foreach(string s in allTokens)
             {
-                if(!s.Equals("end"))
+                if(!String.IsNullOrEmpty(s) && !s.Equals("end"))
                 {
                     if (OpCodes.Contains(s))
                     {
