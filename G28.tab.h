@@ -53,30 +53,32 @@
      PUSH = 269,
      POP = 270,
      PEEK = 271,
-     STRING = 272,
-     ASSIGN = 273,
-     GREATER = 274,
-     LESS = 275,
-     AND = 276,
-     OR = 277,
-     NOT = 278,
-     TRUE = 279,
-     FALSE = 280,
-     PLUS = 281,
-     SUB = 282,
-     MULTIPLY = 283,
-     DIV = 284,
-     IF = 285,
-     ELSE = 286,
-     WHILE = 287,
-     FUNCTION = 288,
-     READ = 289,
-     PRINT = 290,
-     CALLFUNCTION = 291,
-     RETURN = 292,
-     END = 293,
-     NUM = 294,
-     VAR = 295
+     HASH = 272,
+     DOLLAR = 273,
+     ASSIGN = 274,
+     GREATER = 275,
+     LESS = 276,
+     AND = 277,
+     OR = 278,
+     NOT = 279,
+     TRUE = 280,
+     FALSE = 281,
+     PLUS = 282,
+     SUB = 283,
+     MULTIPLY = 284,
+     DIV = 285,
+     IF = 286,
+     ELSE = 287,
+     WHILE = 288,
+     FUNCTION = 289,
+     READ = 290,
+     PRINT = 291,
+     CALLFUNCTION = 292,
+     RETURN = 293,
+     END = 294,
+     NUM = 295,
+     VAR = 296,
+     STRING = 297
    };
 #endif
 /* Tokens.  */
@@ -94,43 +96,45 @@
 #define PUSH 269
 #define POP 270
 #define PEEK 271
-#define STRING 272
-#define ASSIGN 273
-#define GREATER 274
-#define LESS 275
-#define AND 276
-#define OR 277
-#define NOT 278
-#define TRUE 279
-#define FALSE 280
-#define PLUS 281
-#define SUB 282
-#define MULTIPLY 283
-#define DIV 284
-#define IF 285
-#define ELSE 286
-#define WHILE 287
-#define FUNCTION 288
-#define READ 289
-#define PRINT 290
-#define CALLFUNCTION 291
-#define RETURN 292
-#define END 293
-#define NUM 294
-#define VAR 295
+#define HASH 272
+#define DOLLAR 273
+#define ASSIGN 274
+#define GREATER 275
+#define LESS 276
+#define AND 277
+#define OR 278
+#define NOT 279
+#define TRUE 280
+#define FALSE 281
+#define PLUS 282
+#define SUB 283
+#define MULTIPLY 284
+#define DIV 285
+#define IF 286
+#define ELSE 287
+#define WHILE 288
+#define FUNCTION 289
+#define READ 290
+#define PRINT 291
+#define CALLFUNCTION 292
+#define RETURN 293
+#define END 294
+#define NUM 295
+#define VAR 296
+#define STRING 297
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 38 "G28.y"
+#line 39 "G28.y"
 {
 	int val;
 	char *string;
 }
 /* Line 1529 of yacc.c.  */
-#line 134 "G28.tab.h"
+#line 138 "G28.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

@@ -1,0 +1,8 @@
+a EQ 5:
+CON (a LS 10) [:
+FLASH a:
+]: 
+INSTEAD #:
+FLASH "elsepart":
+$:
+FLASH "outsideelse":

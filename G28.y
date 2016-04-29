@@ -10,6 +10,7 @@ int code_line_number = 0;		 /* Index for intermediate code line number */
 int current_line_number; 		 /* Line index stored in stack */
 int stored_location;			 /* Location value stored in stack */
 int lineno= 0;
+int var1;
 
 int i = 0, x = 0;
 
@@ -43,7 +44,9 @@ int pop() {
 /* Tokens from FLEX*/
 
 
-%token LFLOWER RFLOWER LSQUARE RSQUARE PARAML PARAMR FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK /* brackets */
+
+%token LFLOWER RFLOWER LSQUARE RSQUARE PARAML PARAMR FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK HASH DOLLAR/* brackets */
+
 
 %token ASSIGN GREATER LESS AND OR NOT											/* boolean operators */
 
@@ -170,15 +173,31 @@ statement :
 												strcpy(intermediate_code[code_line_number++],"bne ");
 											}
 
-				| RSQUARE				{
+				| RSQUARE 		{
 											current_line_number=pop();
 											stored_location=pop();
 											stored_location=code_line_number;
+											stored_location++;
 											sprintf(to_string,"%d",stored_location);
 											strcat(intermediate_code[current_line_number],to_string);
 											strcat(intermediate_code[current_line_number],"\n");
 										}
+				| ELSE HASH {    		
+								        strcpy(intermediate_code[code_line_number++],"get 1\n");
+										var1 = code_line_number;
+										strcpy(intermediate_code[code_line_number++],"beq ");
 
+				}
+				
+				|DOLLAR             { 	    
+											current_line_number=pop();
+											stored_location=pop();
+											stored_location=code_line_number++;
+											sprintf(to_string,"%d",stored_location);
+											strcat(intermediate_code[var1],to_string);
+										    strcat(intermediate_code[var1],"\n"); }
+								
+     										
 				| STACK VAR  		{
 											strcpy(intermediate_code[code_line_number++],"stk ");
 											strcat(intermediate_code[code_line_number],$2);
@@ -352,7 +371,7 @@ int main (int argc,char **argv)
 
 	yyparse();															/* parsing starts here */
 
-   	strcat(output_file_name, ".int");									/* a file with extension .g28.int for intermediate code */
+   	strcat(output_file_name, ".asm");									/* a file with extension .g28.int for intermediate code */
 
 	fp = fopen(output_file_name, "w");
 

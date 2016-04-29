@@ -58,6 +58,10 @@ NUMBER				[0-9]
 
 ">"         { return PARAMR; }
 
+"#"         { return HASH; }
+
+"$"         { return DOLLAR; }
+
 "LOOP UNTIL" 		{ yylval.string=(char *)yytext; return WHILE; }
 
 "STACK"			    { return STACK;}
