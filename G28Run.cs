@@ -97,9 +97,21 @@ namespace G28Run
 
                 if (opCode.Equals("fth"))
                 {
-                    Console.WriteLine("Enter the value: ");
-                    int input = Int32.Parse(Console.ReadLine());
-                    intstack.Push(input);
+                    Console.WriteLine("Please enter the input: ");
+                    string input = Console.ReadLine();
+                    if (CheckIsInteger(input))
+                    {
+                        intstack.Push(Int32.Parse(input));
+                    }
+                    else if(CheckIsBoolean(input))
+                    {
+                        bool b = input.Equals("true") ? true : false;
+                        boolStack.Push(b);
+                    }
+                    else
+                    {
+                        stringStack.Push(input);
+                    }
                 }
 
                 else if(opCode.Equals("put") && ((intstack.Count > 0) || (boolStack.Count > 0) || (valueReturnFromFunction.Count > 0) || (stringStack.Count > 0)))
@@ -584,6 +596,20 @@ namespace G28Run
                 isInteger = false;
             }
             return isInteger;
+        }
+
+        public static bool CheckIsBoolean(string operand)
+        {
+            bool isBoolean = true;
+            try
+            {
+                Boolean.Parse(operand);
+            }
+            catch (Exception ex)
+            {
+                isBoolean = false;
+            }
+            return isBoolean;
         }
 
         public static void SeparateOperationsAndTokens()
