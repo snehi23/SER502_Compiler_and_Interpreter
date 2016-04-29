@@ -32,12 +32,13 @@ namespace G28Run
 
         static void Main(string[] args)
         {
+            
             if(string.IsNullOrEmpty(args[0]))
             {
                 Console.WriteLine("Please input the file name and try again");
                 return;
             }
-
+            
             string fileName = args[0];
             string line = string.Empty;
             StringBuilder code = new StringBuilder();
@@ -99,7 +100,7 @@ namespace G28Run
                     intstack.Push(input);
                 }
 
-                if(opCode.Equals("put") && ((intstack.Count > 0) || (boolStack.Count > 0)))
+                if(opCode.Equals("put") && ((intstack.Count > 0) || (boolStack.Count > 0) || valueReturnFromFunction.Count > 0))
                 {
                     if(currentFunction.Count == 0 && intstack.Count > 0)
                     {
@@ -115,14 +116,33 @@ namespace G28Run
                         {
                             intHashMap[operand] = intstack.Pop();
                         }
-                        else
+                        else if(intHashMapGlobalValues.ContainsKey(operand))
                         {
                             intHashMapGlobalValues[operand] = intstack.Pop();
+                        }
+                        else
+                        {
+                            intHashMap[operand] = intstack.Pop();
                         }
                     }
                     else if(currentFunction.Count > 0 && boolStack.Count > 0)
                     {
                         boolHashMap[operand] = boolStack.Pop();
+                    }
+                    else if(valueReturnFromFunction.Count > 0)
+                    {
+                        if (intHashMap.ContainsKey(operand))
+                        {
+                            intHashMap[operand] = valueReturnFromFunction.Pop();
+                        }
+                        else if(intHashMapGlobalValues.ContainsKey(operand))
+                        {
+                            intHashMapGlobalValues[operand] = valueReturnFromFunction.Pop();
+                        }
+                        else
+                        {
+                            intHashMap[operand] = valueReturnFromFunction.Pop();
+                        }
                     }                    
                 }
 
@@ -286,13 +306,18 @@ namespace G28Run
                     {
                         if(intHashMap.ContainsKey(operand))
                         {
-                            functionReturn.Add(currentFunction.Peek(), intHashMap[operand]);
+                            functionReturn[currentFunction.Peek()] = intHashMap[operand];
+                        }
+                        else if(intHashMapGlobalValues.ContainsKey(operand))
+                        {
+                            functionReturn[currentFunction.Peek()] = intHashMapGlobalValues[operand];
                         }
                     }
                     else
                     {
-                        functionReturn.Add(currentFunction.Peek(), Int32.Parse(operand));
+                        functionReturn[currentFunction.Peek()] = Int32.Parse(operand);
                     }
+                    i = 100;
                 }
 
                 if(opCode.Equals("run") && (operand == null || operand == string.Empty))
@@ -308,6 +333,7 @@ namespace G28Run
                     if(functionReturn.ContainsKey(values[i - 1]))
                     {
                         valueReturnFromFunction.Push(functionReturn[values[i - 1]]);
+                        //intstack.Push(functionReturn[values[i - 1]]);
                     }
                 }
 
@@ -315,15 +341,61 @@ namespace G28Run
                 if((intstack.Count > 0) && (opCode.Equals("add") || opCode.Equals("sub") || opCode.Equals("mul") || opCode.Equals("div") ||
                     opCode.Equals("grt") || opCode.Equals("lst") || opCode.Equals("asn")))
                 {
+                    bool isReturnValue = false;
                     int right = intstack.Pop();
-                    int left = intstack.Pop();
+                    int left;
+                    if (intstack.Count > 0)
+                    {
+                        left = intstack.Pop();
+                    }
+                    else
+                    {
+                        isReturnValue = true;
+                        left = valueReturnFromFunction.Pop();
+                    }
 
                     switch(opCode)
                     {
-                        case "add": intstack.Push(left + right); break;
-                        case "sub": intstack.Push(left - right); break;
-                        case "mul": intstack.Push(left * right); break;
-                        case "div": intstack.Push(left / right); break;
+                        case "add":
+                                    if (!isReturnValue)
+                                    {
+                                        intstack.Push(left + right);
+                                    }
+                                    else
+                                    {
+                                        valueReturnFromFunction.Push(left + right);
+                                    }
+                                    break;
+                        case "sub":
+                                    if (!isReturnValue)
+                                    {
+                                        intstack.Push(left - right);
+                                    }
+                                    else
+                                    {
+                                        valueReturnFromFunction.Push(left - right);
+                                    }
+                                    break;
+                        case "mul": 
+                                    if (!isReturnValue)
+                                    {
+                                        intstack.Push(left * right);
+                                    }
+                                    else
+                                    {
+                                        valueReturnFromFunction.Push(left * right);
+                                    }
+                                    break;
+                        case "div":
+                                    if (!isReturnValue)
+                                    {
+                                        intstack.Push(left / right);
+                                    }
+                                    else
+                                    {
+                                        valueReturnFromFunction.Push(left / right);
+                                    }
+                                    break;
                         case "grt":
                                     if(left > right)
                                     {
@@ -430,6 +502,10 @@ namespace G28Run
                             {
                                 i = end - start - 1;
                             }
+                            else
+                            {
+                                i--;
+                            }
                         }
                     }
                     else
@@ -459,7 +535,10 @@ namespace G28Run
                     }
                     else if(superStack.Count > 0)
                     {
-                        Console.WriteLine(superStack.Pop().ToString());
+                        foreach (int ele in superStack.Pop())
+                        {
+                            Console.WriteLine(ele + " ");
+                        }
                     }
                 }
 
