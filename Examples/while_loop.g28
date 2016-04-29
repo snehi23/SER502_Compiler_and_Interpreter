@@ -1,3 +1,4 @@
+//Program showing While Statement functionality:
 SCAN a:
 LOOP UNTIL (a GT 1) { :
 FLASH a :

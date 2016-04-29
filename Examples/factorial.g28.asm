@@ -3,11 +3,11 @@ put a
 get 1
 put product
 fun abc
-put a
+pta a
 get a
 get 1
 grt
-bne 21
+bne 22
 get product
 get a
 mul
@@ -17,11 +17,11 @@ get 1
 sub
 put a
 get abc
-get a
+gta a
 run
 fnd
 get abc
-get a
+gta a
 run
 get product
 dsp

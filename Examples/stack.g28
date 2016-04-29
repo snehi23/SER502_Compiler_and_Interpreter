@@ -1,6 +1,8 @@
-/*Stack implementation*/
+//Stack data structure usage and push,pop,peek operation:
 STACK a:
 PUSH a 1:
 PUSH a 5:
 b EQ PEEK a:
-FLASH b:
+FLASH a:
+c EQ POP a:
+FLASH c:

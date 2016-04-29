@@ -1,3 +1,4 @@
+//Program to check assignment operation:
 SCAN a:
-a EQ a + 1:
+a EQS a + 1:
 FLASH a:

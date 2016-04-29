@@ -2,22 +2,16 @@ get true
 put a
 get false
 put b
-get true
-put c
 get a
 get b
 and
-put d
-get d
+put c
+get c
 dsp
 get a
 get b
 or
-put e
-get e
-dsp
-get c
-not
-get c
+put d
+get d
 dsp
 end
