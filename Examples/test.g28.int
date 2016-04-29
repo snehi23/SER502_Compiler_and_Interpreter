@@ -6,7 +6,7 @@ get 1
 add
 put a
 jbk a
-get RFT
+fnd
 get abc
 run
 put b
