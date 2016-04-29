@@ -9,7 +9,7 @@ int code_line_number = 0;		 /* Index for intermediate code line number */
 int current_line_number; 		 /* Line index stored in stack */
 int stored_location;			 /* Location value stored in stack */
 int lineno= 0;
-int var1;
+int var1 = 0;
 
 int i = 0, x = 0;
 
@@ -44,7 +44,7 @@ int pop() {
 
 
 
-%token LFLOWER RFLOWER LSQUARE RSQUARE PARAML PARAMR FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK HASH DOLLAR/* brackets */
+%token LFLOWER RFLOWER LSQUARE RSQUARE PARAML PARAMR FUNCTIONL FUNCTIONR LPAREN RPAREN STACK PUSH POP PEEK /* brackets */
 
 
 %token ASSIGN GREATER LESS AND OR NOT											/* boolean operators */
@@ -178,25 +178,24 @@ statement :
 											stored_location=code_line_number;
 											stored_location++;
 											sprintf(to_string,"%d",stored_location);
-											strcat(intermediate_code[current_line_number],to_string);
-											strcat(intermediate_code[current_line_number],"\n");
+											if (var1 == 0){
+												strcat(intermediate_code[current_line_number],to_string);
+												strcat(intermediate_code[current_line_number],"\n");}
+											else {
+												stored_location=code_line_number++;
+												sprintf(to_string,"%d",stored_location);
+												strcat(intermediate_code[var1],to_string);
+											    strcat(intermediate_code[var1],"\n"); 
+												var1=0;
+											}
 										}
-				| ELSE HASH {    		
+				| ELSE LSQUARE {    		
 								        strcpy(intermediate_code[code_line_number++],"get 1\n");
 										var1 = code_line_number;
 										strcpy(intermediate_code[code_line_number++],"beq ");
 
-				}
-				
-				|DOLLAR             { 	    
-											current_line_number=pop();
-											stored_location=pop();
-											stored_location=code_line_number++;
-											sprintf(to_string,"%d",stored_location);
-											strcat(intermediate_code[var1],to_string);
-										    strcat(intermediate_code[var1],"\n"); }
-								
-     										
+							}
+											
 				| STACK VAR  		{
 											strcpy(intermediate_code[code_line_number++],"stk ");
 											strcat(intermediate_code[code_line_number],$2);

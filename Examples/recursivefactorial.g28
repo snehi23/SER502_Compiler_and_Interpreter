@@ -2,6 +2,8 @@ SCAN a :
 FUNC abc <b> LFT :
 CON ( b LS 2 ) [ :
 RETURN b :
+] : 
+INSTEAD [ :
 ] :
 e EQ b - 1 :
 c EQ CALL abc <e> :

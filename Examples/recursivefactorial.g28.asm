@@ -5,14 +5,16 @@ pta b
 get b
 get 2
 lst
-bne 9
+bne 10
 jbk b
+get 1
+beq 11
 get b
 get 1
 sub
 put e
-get abc
 gta e
+get abc
 run
 put c
 get b
@@ -21,8 +23,8 @@ mul
 put b
 jbk b
 fnd
-get abc
 gta a
+get abc
 run
 put c
 get c
