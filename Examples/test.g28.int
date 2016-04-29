@@ -1,15 +1,26 @@
 fth
 put a
 fun abc
-get a
+pta b
+get b
+get 2
+lst
+bne 9
+jbk b
+get b
 get 1
-add
-put a
-jbk a
+sub
+put b
+jbk b
+get abc
+gta b
+run
+mul
 fnd
 get abc
+gta a
 run
-put b
-get b
+put c
+get c
 dsp
 end
