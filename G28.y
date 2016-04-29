@@ -252,22 +252,22 @@ statement :
 										}
 				| CALLFUNCTION VAR PARAML VAR PARAMR  
 										{
-											strcpy(intermediate_code[code_line_number],"get ");
-											strcat(intermediate_code[code_line_number],$2);
-											strcat(intermediate_code[code_line_number++],"\n");
 											strcpy(intermediate_code[code_line_number],"gta ");
 											strcat(intermediate_code[code_line_number],$4);
+											strcat(intermediate_code[code_line_number++],"\n");
+											strcpy(intermediate_code[code_line_number],"get ");
+											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
 											strcpy(intermediate_code[code_line_number++],"run\n");
 										}
 				| CALLFUNCTION VAR PARAML NUM PARAMR  
 										{
-											strcpy(intermediate_code[code_line_number],"get ");
-											strcat(intermediate_code[code_line_number],$2);
-											strcat(intermediate_code[code_line_number++],"\n");
 											strcpy(intermediate_code[code_line_number],"gta ");
 											sprintf(to_string,"%d",$4);
 											strcat(intermediate_code[code_line_number],to_string);
+											strcpy(intermediate_code[code_line_number],"get ");
+											strcat(intermediate_code[code_line_number],$2);
+											strcat(intermediate_code[code_line_number++],"\n");
 											strcat(intermediate_code[code_line_number++],"\n");
 											strcpy(intermediate_code[code_line_number++],"run\n");
 										}												
