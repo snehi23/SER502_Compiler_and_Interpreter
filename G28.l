@@ -22,19 +22,19 @@ NUMBER				[0-9]
 
 "/"					{ return DIV; }
 
-"EQ"				{ return ASSIGN; }
+"="				{ return ASSIGN; }
 
-"CON"        		{ return IF; }
+"if"        		{ return IF; }
 
-"INSTEAD"			{ return ELSE; }
+"else"			{ return ELSE; }
 
-"T"					{ return TRUE; }
+"true"					{ return TRUE; }
 
-"F"					{ return FALSE; }
+"false"					{ return FALSE; }
 
-"GT"				{ return GREATER; }
+">"				{ return GREATER; }
 
-"LS"				{ return LESS; }
+"<"				{ return LESS; }
 
 "&"					{ return AND; }
 
@@ -54,35 +54,35 @@ NUMBER				[0-9]
 
 "]"					{ return RSQUARE; }
 
-"<"         { return PARAML; }
+"<<"         { return PARAML; }
 
-">"         { return PARAMR; }
+">>"         { return PARAMR; }
 
-"LOOP UNTIL" 		{ yylval.string=(char *)yytext; return WHILE; }
+"while" 		{ yylval.string=(char *)yytext; return WHILE; }
 
-"STACK"			    { return STACK;}
+"stack"			    { return STACK;}
 
-"FUNC"      		{ return FUNCTION; }
+"func"      		{ return FUNCTION; }
 
-"LFT"				{ return FUNCTIONL; }
+"fstart"				{ return FUNCTIONL; }
 
-"RHT"				{ return FUNCTIONR; }
+"fend"				{ return FUNCTIONR; }
 
-"CALL"				{ return CALLFUNCTION; }
+"call"				{ return CALLFUNCTION; }
 
-"SCAN"				{ yylval.string=(char *)yytext; return READ; }
+"scan"				{ yylval.string=(char *)yytext; return READ; }
 
-"FLASH"				{ yylval.string=(char *)yytext; return PRINT; }
+"print"				{ yylval.string=(char *)yytext; return PRINT; }
 
 ":"					{ return END; }
 
-"RETURN"			{ return RETURN; }
+"return"			{ return RETURN; }
 
-"PUSH"              {return PUSH;}
+"push"              {return PUSH;}
 
-"POP"              {return POP;}
+"pop"              {return POP;}
 
-"PEEK"              {return PEEK;}
+"peek"              {return PEEK;}
 
 \"(\\.|[^"])*\"     {yylval.string=(char *)yytext;return STRING;}
 
