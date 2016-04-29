@@ -5,6 +5,6 @@ get 5
 psh a
 pek a
 put b
-get b
+get a
 dsp
 end

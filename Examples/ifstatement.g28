@@ -1,4 +1,9 @@
-SCAN a:
-CON (a GT 0) [:
+// Program implementing if-else functionality:
+a EQ 5:
+CON (a LS 10) [:
 FLASH a:
-]:
+]: 
+INSTEAD #:
+FLASH "elsepart":
+$:
+FLASH "outsideelse":

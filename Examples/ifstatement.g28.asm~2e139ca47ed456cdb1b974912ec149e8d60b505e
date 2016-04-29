@@ -3,7 +3,7 @@ put a
 get a
 get 0
 grt
-bne 8
+bne 9
 get a
 dsp
 end

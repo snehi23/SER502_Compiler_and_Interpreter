@@ -10,9 +10,9 @@ jbk b
 get b
 get 1
 sub
-put b
+put e
 get abc
-gta b
+gta e
 run
 put c
 get b
