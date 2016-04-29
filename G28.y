@@ -146,9 +146,6 @@ expression :    statement
 														strcat(intermediate_code[code_line_number],"false");
 														strcat(intermediate_code[code_line_number++],"\n");
 	  												}
-			
-
-
 ;
 
 statement :
@@ -224,7 +221,6 @@ statement :
 			   |  PEEK  VAR		{
 											strcpy(intermediate_code[code_line_number++],"pek ");
 											strcat(intermediate_code[code_line_number],$2);
-											strcat(intermediate_code[code_line_number++],"\n");
 										}
 
 				| FUNCTION VAR FUNCTIONL
@@ -232,23 +228,7 @@ statement :
 											strcpy(intermediate_code[code_line_number],"fun ");
 											strcat(intermediate_code[code_line_number],$2);
 											strcat(intermediate_code[code_line_number++],"\n");
-										}
-				| FUNCTION VAR PARAML VAR PARAMR FUNCTIONL
-										{
-											strcpy(intermediate_code[code_line_number],"fun ");
-											strcat(intermediate_code[code_line_number],$2);
-											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number],"pta ");
-											strcat(intermediate_code[code_line_number],$4);
-											strcat(intermediate_code[code_line_number++],"\n");
-										}																
 
-				| CALLFUNCTION VAR 
-										{
-											strcpy(intermediate_code[code_line_number],"get ");
-											strcat(intermediate_code[code_line_number],$2);
-											strcat(intermediate_code[code_line_number++],"\n");
-											strcpy(intermediate_code[code_line_number++],"run\n");
 										}
 				| CALLFUNCTION VAR PARAML VAR PARAMR  
 										{
