@@ -1,30 +1,28 @@
 fth
 put a
+get 1
+put product
 fun abc
-pta b
-get b
-get 2
-lst
-bne 9
-jbk b
-get b
+pta a
+get a
+get 1
+grt
+bne 21
+get product
+get a
+mul
+put product
+get a
 get 1
 sub
-put b
+put a
 get abc
-gta b
+gta a
 run
-put c
-get b
-get c
-mul
-put b
-jbk b
 fnd
 get abc
 gta a
 run
-put c
-get c
+get product
 dsp
 end
