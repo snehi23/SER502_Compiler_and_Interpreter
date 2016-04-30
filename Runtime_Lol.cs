@@ -205,13 +205,11 @@ namespace LangaugeOfLegends
                 {
                     if (currentFunction.Count == 0)
                     {
-                        Stack<int> st = stackHashmapGlobalValues[operand];
-                        st.Pop();
+                        stackHashmapGlobalValues[operand].Pop();
                     }
                     else
                     {
-                        Stack<int> st = stackHashMap[operand];
-                        st.Pop();
+                        stackHashMap[operand].Pop();
                     }
                 }
 
