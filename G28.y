@@ -344,13 +344,14 @@ condition :			| expression GREATER expression	{
 
 extern FILE *yyin;
 extern char *yytext;
+extern int yylineno;
 
 
 
 int main (int argc,char **argv)
 {
 
-	char output_file_name[20];
+	char output_file_name[60];
    	FILE *fp;
    	++argv, --argc;
    	int i = 0;
@@ -389,7 +390,7 @@ int main (int argc,char **argv)
 int yyerror (char *s) 	{ 
 											/* error case handling on parsing */
 
- printf ("ERROR: %s -----%s----- at line number :  %d\n",s,yytext,lineno+1);
+ printf ("ERROR: %s -----%s----- at line number :  %d\n",s,yytext,yylineno);
  
  return 0;
 }
