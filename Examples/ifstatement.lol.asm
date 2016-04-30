@@ -1,4 +1,4 @@
-get 5
+fth
 put a
 get a
 get 10
