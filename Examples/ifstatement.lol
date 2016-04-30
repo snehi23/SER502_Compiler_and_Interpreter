@@ -1,5 +1,5 @@
 // Program implementing if-else functionality:
-a = 5:
+scan a:
 if (a > 10) [:
 print "Inside_if_block":
 print a:
