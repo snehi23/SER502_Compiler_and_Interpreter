@@ -3,23 +3,22 @@ Language Design Project using flex and bison for compiler and C# for interpreter
 
 Steps to generate G28.g28 executable
 
-1. flex G28.l
-2. bison -d G28.y
-3. gcc -o Compiler.exe lex.yy.c G28.tab.c -ll -lm
+1. flex LOL.l
+2. bison -d LOL.y
+3. gcc -o Compiler_Lol lex.yy.c LOL.tab.c -ll -lm
 
-Steps to compile .g28 code
+Steps to compile .lol code
 
-1. ./Compiler.exe <file-name>.g28
+1. ./Compiler_Lol <file-name>.lol
 
 Steps to interpret and run code [on Windows/mac OSX/LINUX]
 
-1. mcs G28Run.cs
-2. mono G28Run.exe <file-name>.g28.asm
-
+1. mcs Runtime_Lol.cs
+2. mono Runtime_Lol.exe <file-name>.lol.asm
 
 Installation Note:
 
-Steps to install mono framework on 
+Steps to install mono framework on
 
 a) mac OSX
 
@@ -29,7 +28,7 @@ a) mac OSX
 b) Windows
 
 1. Download Mono 32-bit from http://www.mono-project.com/download/  (Works on 64 bit machines too)
-2. Follow the installation guidelines from http://www.mono-project.com/docs/getting-started/install/windows/ 
+2. Follow the installation guidelines from http://www.mono-project.com/docs/getting-started/install/windows/
 
 c) LINUX
 
@@ -42,4 +41,3 @@ Run the following commands from a terminal:
 3) sudo apt-get update
 
 4) sudo apt-get install mono-mcs
-
