@@ -8,7 +8,7 @@ lst
 bne 10
 jbk b
 get 1
-beq 11
+beq 24
 get b
 get 1
 sub

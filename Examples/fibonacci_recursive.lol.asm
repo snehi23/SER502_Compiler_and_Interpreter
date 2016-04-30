@@ -1,3 +1,7 @@
+str "Fibonacci_series"
+dsp
+str "1_1_2_3_5_8_13_21"
+dsp
 fth
 put a
 fun fibo
@@ -5,10 +9,10 @@ pta val
 get val
 get 2
 lst
-bne 10
+bne 14
 jbk val
 get 1
-beq 32
+beq 36
 get val
 get 1
 sub
