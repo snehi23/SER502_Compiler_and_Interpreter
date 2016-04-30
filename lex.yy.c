@@ -545,10 +545,10 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "G28.l"
-#line 3 "G28.l"
+#line 1 "LOL.l"
+#line 3 "LOL.l"
 #include <stdio.h>
-#include "G28.tab.h"
+#include "LOL.tab.h"
 static void forget_to_close_comment_error(void);
 static void skip_single_line_comment(void);
 static void skip_multiple_line_comment(void);
@@ -735,7 +735,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 16 "G28.l"
+#line 16 "LOL.l"
 
 #line 741 "lex.yy.c"
 
@@ -832,225 +832,225 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 17 "G28.l"
+#line 17 "LOL.l"
 { return PLUS; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 19 "G28.l"
+#line 19 "LOL.l"
 { return SUB; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 21 "G28.l"
+#line 21 "LOL.l"
 { return MULTIPLY; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 23 "G28.l"
+#line 23 "LOL.l"
 { return DIV; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 25 "G28.l"
+#line 25 "LOL.l"
 { return ASSIGN; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 27 "G28.l"
+#line 27 "LOL.l"
 { return IF; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 29 "G28.l"
+#line 29 "LOL.l"
 { return ELSE; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 31 "G28.l"
+#line 31 "LOL.l"
 { return TRUE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "G28.l"
+#line 33 "LOL.l"
 { return FALSE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 35 "G28.l"
+#line 35 "LOL.l"
 { return GREATER; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 37 "G28.l"
+#line 37 "LOL.l"
 { return LESS; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 39 "G28.l"
+#line 39 "LOL.l"
 { return AND; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 41 "G28.l"
+#line 41 "LOL.l"
 {return OR; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 43 "G28.l"
+#line 43 "LOL.l"
 {return NOT; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 45 "G28.l"
+#line 45 "LOL.l"
 { return LPAREN; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 47 "G28.l"
+#line 47 "LOL.l"
 { return RPAREN; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 49 "G28.l"
+#line 49 "LOL.l"
 { return LFLOWER; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 51 "G28.l"
+#line 51 "LOL.l"
 { return RFLOWER; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 53 "G28.l"
+#line 53 "LOL.l"
 { return LSQUARE; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 55 "G28.l"
+#line 55 "LOL.l"
 { return RSQUARE; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 57 "G28.l"
+#line 57 "LOL.l"
 { return PARAML; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 59 "G28.l"
+#line 59 "LOL.l"
 { return PARAMR; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 61 "G28.l"
+#line 61 "LOL.l"
 { yylval.string=(char *)yytext; return WHILE; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 63 "G28.l"
+#line 63 "LOL.l"
 { return STACK;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 65 "G28.l"
+#line 65 "LOL.l"
 { return FUNCTION; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 67 "G28.l"
+#line 67 "LOL.l"
 { return FUNCTIONL; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 69 "G28.l"
+#line 69 "LOL.l"
 { return FUNCTIONR; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 71 "G28.l"
+#line 71 "LOL.l"
 { return CALLFUNCTION; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 73 "G28.l"
+#line 73 "LOL.l"
 { yylval.string=(char *)yytext; return READ; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 75 "G28.l"
+#line 75 "LOL.l"
 { yylval.string=(char *)yytext; return PRINT; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 77 "G28.l"
+#line 77 "LOL.l"
 { return END; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 79 "G28.l"
+#line 79 "LOL.l"
 { return RETURN; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 81 "G28.l"
+#line 81 "LOL.l"
 {return PUSH;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 83 "G28.l"
+#line 83 "LOL.l"
 {return POP;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 85 "G28.l"
+#line 85 "LOL.l"
 {return PEEK;}
 	YY_BREAK
 case 36:
 /* rule 36 can match eol */
 YY_RULE_SETUP
-#line 87 "G28.l"
+#line 87 "LOL.l"
 {yylval.string=(char *)yytext;return STRING;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 90 "G28.l"
+#line 90 "LOL.l"
 { /* DO NOTHING */ }
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 91 "G28.l"
+#line 91 "LOL.l"
 { /* DO NOTHING */ }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 93 "G28.l"
+#line 93 "LOL.l"
 {forget_to_close_comment_error(); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 96 "G28.l"
+#line 96 "LOL.l"
 { /* empty */ }
 	YY_BREAK
 case 41:
 /* rule 41 can match eol */
 YY_RULE_SETUP
-#line 97 "G28.l"
+#line 97 "LOL.l"
 { /* empty */ }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 102 "G28.l"
+#line 102 "LOL.l"
 { yylval.val = atoi(yytext); return NUM; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 104 "G28.l"
+#line 104 "LOL.l"
 { yylval.string = (char *)strdup(yytext); return VAR; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 105 "G28.l"
+#line 105 "LOL.l"
 ECHO;
 	YY_BREAK
 #line 1057 "lex.yy.c"
@@ -2062,7 +2062,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 105 "G28.l"
+#line 105 "LOL.l"
 
 
 
