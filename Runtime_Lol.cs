@@ -206,12 +206,12 @@ namespace LangaugeOfLegends
                     if (currentFunction.Count == 0)
                     {
                         Stack<int> st = stackHashmapGlobalValues[operand];
-                        intstack.Push(st.Pop());
+                        st.Pop();
                     }
                     else
                     {
                         Stack<int> st = stackHashMap[operand];
-                        intstack.Push(st.Pop());
+                        st.Pop();
                     }
                 }
 
