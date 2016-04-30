@@ -9,12 +9,12 @@ Steps to generate G28.g28 executable
 
 Steps to compile .lol code
 
-1. ./Compiler_Lol <file-name>.lol
+1. ./Compiler_Lol [file-name].lol
 
 Steps to interpret and run code [on Windows/mac OSX/LINUX]
 
 1. mcs Runtime_Lol.cs
-2. mono Runtime_Lol.exe <file-name>.lol.asm
+2. mono Runtime_Lol.exe [file-name].lol.asm
 
 Installation Note:
 

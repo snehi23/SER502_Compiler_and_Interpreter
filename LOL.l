@@ -1,7 +1,7 @@
 
 %{
 #include <stdio.h>
-#include "G28.tab.h"
+#include "LOL.tab.h"
 static void forget_to_close_comment_error(void);
 static void skip_single_line_comment(void);
 static void skip_multiple_line_comment(void);
