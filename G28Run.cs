@@ -591,6 +591,7 @@ namespace G28Run
             {
                 Int32.Parse(operand);
             }
+            #pragma warning disable 0168
             catch (Exception ex)
             {
                 isInteger = false;
@@ -605,6 +606,7 @@ namespace G28Run
             {
                 Boolean.Parse(operand);
             }
+            #pragma warning disable 0168
             catch (Exception ex)
             {
                 isBoolean = false;
